@@ -1,0 +1,1 @@
+let taskCompleted: boolean = false;
