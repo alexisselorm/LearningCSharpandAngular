@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReqresService } from 'src/app/services/reqres.service';
 import { User } from 'src/app/user';
 
@@ -17,10 +17,17 @@ export class UserDetailComponent {
   };
   constructor(
     private atctivatedRoute: ActivatedRoute,
-    private reqresService: ReqresService
+    private reqresService: ReqresService,
+    private router: Router
   ) {
     this.atctivatedRoute.params.subscribe((params) => {
       reqresService.getUser(params['id']).subscribe((res) => (this.user = res));
     });
+  }
+
+  save(): void {
+    this.reqresService
+      .updateUser(this.user)
+      .subscribe(() => this.router.navigate(['users']));
   }
 }

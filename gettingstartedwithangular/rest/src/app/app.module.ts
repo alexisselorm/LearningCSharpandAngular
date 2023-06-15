@@ -11,6 +11,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UserAddComponent } from './components/user/user-add.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { UserDetailComponent } from './components/user/user-detail.component';
     ContactComponent,
     HomeComponent,
     UserDetailComponent,
+    UserAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,8 @@ import { UserDetailComponent } from './components/user/user-detail.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

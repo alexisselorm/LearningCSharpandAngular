@@ -28,4 +28,12 @@ export class HomeComponent {
   userDetails(id: number) {
     this.router.navigate(['user', id]);
   }
+
+  addUser(): void {
+    this.router.navigate(['add']);
+  }
+  deleteUser(user: User) {
+    this.users = this.users.filter((user) => user !== user);
+    this.reqresServer.deleteUser(user).subscribe();
+  }
 }

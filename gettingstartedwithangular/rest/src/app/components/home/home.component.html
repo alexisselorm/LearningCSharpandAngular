@@ -1,3 +1,8 @@
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group">
+    <button class="btn btn-success" (click)="addUser()">Add User</button>
+  </div>
+</div>
 <ul>
   <li *ngFor="let user of users">
     <img [src]="user.avatar" [alt]="user.first_name" />
@@ -8,6 +13,13 @@
         (click)="userDetails(user.id)"
       >
         Details
+      </button>
+      <button
+        class="btn btn-danger btn-sm"
+        title="Delete Users"
+        (click)="deleteUser(user)"
+      >
+        X
       </button>
     </div>
   </li>

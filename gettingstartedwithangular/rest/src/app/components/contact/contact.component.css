@@ -1,0 +1,8 @@
+.error {
+  margin-top: -10px;
+  color: network;
+  padding: 0.5em;
+  display: inline-block;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
