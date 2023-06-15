@@ -1,0 +1,39 @@
+<div class="container" style="margin-top: 40px">
+  <div class="card" style="width: 100%">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4" style="text-align: center">
+          <img
+            [src]="user.avatar"
+            class="card-img-top img-thumb"
+            [alt]="user.first_name"
+          />
+          <h5 class="card-title">{{ user.first_name }}</h5>
+        </div>
+        Chapter 3 RestApp Part 1 121
+        <div class="col-8">
+          <p class="card-text">
+            Lorem ipsum pain sit amet, consectetur adipiscing elit. Maecenas
+            convallis sed elit ac sagittis. Integer facilisis scelerisque erat
+            quis finibus. Nunc euismod molesie eros, id semper lacus euismod
+            tempus. Nulla at just id felis venenatis varius. Morbi eu rutrum
+            nibh, at tempor quam. Aenean interdum eu sapien ac sodales. Aenean
+            ut gravida eros, id tincidunt massa. Vivamus accumsan pain nec
+            malaise sagittis. Sed lobortis sit amet Ligula eu molestie. Nulla
+            facilisi. Nam elit dui, rutrum nec massa nec, volutpat gravida ante.
+            Nulla tempus hate et interdum tincidunt. Aliquam lacinia ulcers
+            pretium. Phasellus convallis consequat lacus sed suscipit. Fusce
+            annoy lobortis lorem nec convallis.
+          </p>
+          <a href="#" class="btn btn-primary">User List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+The main change is that inside the card-body, we have added a row and inside it
+two columns. This way:
+<div class="row">
+  <div class="col-4">...</div>
+  <div class="col-8">...</div>
+</div>
