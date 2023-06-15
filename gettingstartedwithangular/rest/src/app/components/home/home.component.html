@@ -7,7 +7,7 @@
   </div>
   <ul>
     <li *ngFor="let user of users">
-      <img [src]="user.avatar" [alt]="user.first_name" />
+      <img [src]="user.avatar | noimage" [alt]="user.first_name" />
       <p>{{ user.first_name }} {{ user.last_name }}</p>
       <div style="padding-top: 5px; width: 18rem">
         <button

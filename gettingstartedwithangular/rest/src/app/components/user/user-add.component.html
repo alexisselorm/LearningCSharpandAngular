@@ -4,13 +4,7 @@
       <label for="first_name">First Name:</label>
       <input type="text" formControlName="first_name" class="form-control" />
       <div
-        *ngIf="
-          submitted &&
-          userForm.controls[
-            'first_
- name'
-          ].errors
-        "
+        *ngIf="submitted && userForm.controls['first_name'].errors"
         class="error"
       >
         <div *ngIf="userForm.controls['first_name'].errors">

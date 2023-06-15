@@ -5,7 +5,7 @@
         <div class="col-4" style="text-align: center">
           <img
             *ngIf="user.avatar"
-            [src]="user.avatar"
+            [src]="user.avatar | noimage"
             class="card-img-top img-thumb"
             [alt]="user.first_name"
           />
