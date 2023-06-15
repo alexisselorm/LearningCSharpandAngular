@@ -13,11 +13,14 @@ export class HomeComponent {
     this.getUsers();
   }
   users: User[] = [];
+  loading: boolean = false;
 
   getUsers() {
+    this.loading = true;
     this.reqresServer.getUsers().subscribe(
       (res: User[]) => {
         this.users = res;
+        this.loading = false;
         // console.log(res);
       },
       (err) => {
