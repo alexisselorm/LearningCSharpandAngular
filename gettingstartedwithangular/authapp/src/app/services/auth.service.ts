@@ -9,13 +9,14 @@ export class AuthService {
   private _idToken: string;
   private _accessToken: string;
   private _expiresAt: number;
+  userProfile: any;
 
   auth0 = new auth0.WebAuth({
     clientID: 'ibagtV8DSvEkQ9ClzcXYPcSqK2r0NtwD',
     domain: 'dev-uttho5cbbhvl2kh6.us.auth0.com',
     redirectUri: 'http://localhost:4200/',
     responseType: 'token id_token',
-    scope: 'openid',
+    scope: 'openid profile',
   });
   constructor(public router: Router) {
     this._idToken = '';
@@ -86,5 +87,19 @@ export class AuthService {
     // Check whether the current time is past the access token expiration time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     return new Date().getTime() < expiresAt;
+  }
+
+  public getProfile(cb: any): void {
+    this._accessToken = localStorage.getItem('access_token') ?? '';
+    if (!this._accessToken) {
+      throw new Error('Access token must be provided to get profile');
+    }
+    const self = this;
+    this.auth0.client.userInfo(this._accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 }
