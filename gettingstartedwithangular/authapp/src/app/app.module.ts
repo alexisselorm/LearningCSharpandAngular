@@ -5,9 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { PrivateComponent } from './components/private/private.component';
+import { CallbackComponent } from './shared/callback/callback.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, AboutComponent, PrivateComponent, CallbackComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [AuthService],
   bootstrap: [AppComponent],

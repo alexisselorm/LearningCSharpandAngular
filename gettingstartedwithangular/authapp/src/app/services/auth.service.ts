@@ -11,9 +11,9 @@ export class AuthService {
   private _expiresAt: number;
 
   auth0 = new auth0.WebAuth({
-    clientID: '[your-client-id]',
-    domain: '[your-domain-id]',
-    redirectUri: 'http://localhost:4200/callback',
+    clientID: 'ibagtV8DSvEkQ9ClzcXYPcSqK2r0NtwD',
+    domain: 'dev-uttho5cbbhvl2kh6.us.auth0.com',
+    redirectUri: 'http://localhost:4200/',
     responseType: 'token id_token',
     scope: 'openid',
   });
@@ -47,10 +47,16 @@ export class AuthService {
 
   private localLogin(authResult: any): void {
     // Set teh time the access token will expire
-    const expiresAt = authResult.expiresIn * 1000 + Date.now();
+    const expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + Date.now()
+    ) as string;
     this._accessToken = authResult.accessToken;
     this._idToken = authResult.idToken;
-    this._expiresAt = expiresAt;
+    // this._expiresAt = expiresAt;
+
+    localStorage.setItem('access_token', this._accessToken);
+    localStorage.setItem('id_token', this._idToken);
+    localStorage.setItem('expires_at', expiresAt);
   }
 
   public renewTokens(): void {
@@ -70,15 +76,15 @@ export class AuthService {
 
   public logout(): void {
     // Remove tokens and expiry time
-    this._accessToken = '';
-    this._idToken = '';
-    this._expiresAt = 0;
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.router.navigate(['/']);
   }
 
   public isAuthenticated(): boolean {
     // Check whether the current time is past the access token expiration time
-    // return this._accessToken && new Date.now() < this._expiresAt;
-    return true;
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
+    return new Date().getTime() < expiresAt;
   }
 }
