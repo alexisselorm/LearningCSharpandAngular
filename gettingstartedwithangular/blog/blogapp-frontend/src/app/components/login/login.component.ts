@@ -39,6 +39,16 @@ export class LoginComponent implements OnInit {
       this.controls['password'].value
     );
 
+    this.loginService.login(this.user).subscribe({
+      next: (result) => console.log(result),
+      error: (e) => console.log(e),
+      complete: () => {
+        this.loading = false;
+        this.submitted = false;
+        console.info('complete');
+      },
+    });
+
     console.log(this.user);
   }
   ngOnInit() {}
