@@ -1,29 +1,46 @@
 <div class="main">
-  <form class="form-signin">
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  Chapter 6 Blog App Part 1 224
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
+    <label for="username" class="sr-only">Username</label>
     <input
-      type="email"
-      id="inputEmail"
+      type="text"
+      formControlName="username"
       class="form-control"
-      placeholder="Email address"
-      required
-      autofocus
+      placeholder="Username"
+      [ngClass]="{ 'is-invalid': submitted && controls['username'].errors }"
     />
-    <label for="inputPassword" class="sr-only">Password</label>
+    <div
+      *ngIf="submitted && controls['username'].errors"
+      class="invalid-feedback"
+    >
+      <div *ngIf="controls['username'].errors['required']">
+        Username is required
+      </div>
+    </div>
+    <label for="password" class="sr-only">Password</label>
     <input
       type="password"
-      id="inputPassword"
+      formControlName="password"
       class="form-control"
       placeholder="Password"
-      required
+      [ngClass]="{ 'is-invalid': submitted && controls['password'].errors }"
     />
-    <div class="checkbox mb-3">
-      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    <div
+      *ngIf="submitted && controls['password'].errors"
+      class="invalid-feedback"
+    >
+      <div *ngIf="controls['password'].errors['required']">
+        Password is required
+      </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
-      Sign in
-    </button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-{{ date | date : "yyyy" }}</p>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-lg btn-primary btn-block">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+        </span>
+        Sign in
+      </button>
+    </div>
   </form>
 </div>
