@@ -23,13 +23,13 @@ app.post("/api/user/login", async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
-  if (user) {
+  if (user.length > 0) {
     return res.status(200).json({
       status: "success",
       data: user,
     });
   }
-  return res.status(400).json({
+  return res.status(200).json({
     status: "fail",
     message: "Login Failed",
   });

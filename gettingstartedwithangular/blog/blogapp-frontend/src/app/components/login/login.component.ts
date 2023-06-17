@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,12 +17,17 @@ export class LoginComponent implements OnInit {
   error: string = '';
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   get controls() {
@@ -39,8 +45,17 @@ export class LoginComponent implements OnInit {
       this.controls['password'].value
     );
 
-    this.loginService.login(this.user).subscribe({
-      next: (result) => console.log(result),
+    this.authService.login(this.user).subscribe({
+      next: (result: any) => {
+        console.log(result);
+
+        if (result['status'] == 'success') {
+          this.authService.setCurrentUser(this.user);
+          this.router.navigate(['/home']);
+        } else {
+          this.error = 'Wrong username or password';
+        }
+      },
       error: (e) => console.log(e),
       complete: () => {
         this.loading = false;
@@ -48,8 +63,6 @@ export class LoginComponent implements OnInit {
         console.info('complete');
       },
     });
-
-    console.log(this.user);
   }
   ngOnInit() {}
 }
