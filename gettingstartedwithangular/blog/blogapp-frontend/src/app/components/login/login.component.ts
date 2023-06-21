@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
         console.log(result);
 
         if (result['status'] == 'success') {
+          this.user.setId(result['data'][0]._id);
           this.authService.setCurrentUser(this.user);
           this.router.navigate(['/home']);
         } else {

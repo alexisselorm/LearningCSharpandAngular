@@ -15,11 +15,17 @@ export class AuthService {
   }
 
   setCurrentUser(user: User) {
-    localStorage.setItem('currentUser', user.getUsername());
+    const loggedInUser = {
+      id: user.getId(),
+      username: user.getUsername(),
+    };
+    localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
   }
 
   isAuthenticated(): boolean {
-    const currentUser = localStorage.getItem('currentUser');
+    const currentUser = JSON.parse(
+      localStorage.getItem('currentUser') as string
+    );
     return currentUser ? true : false;
   }
 
