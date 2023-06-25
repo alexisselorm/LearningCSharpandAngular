@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommonService } from 'src/app/services/common.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private postService: PostService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private commonService: CommonService
   ) {}
 
   getPosts() {
@@ -32,5 +34,9 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getPosts();
+
+    this.commonService.postAdded_Observable.subscribe((res) => {
+      this.getPosts();
+    });
   }
 }
