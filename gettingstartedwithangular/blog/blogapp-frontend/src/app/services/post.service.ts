@@ -10,4 +10,12 @@ export class PostService {
   getAllPosts() {
     return this.http.get('/api/post/getAllPosts', {});
   }
+  getPostsByAuthor() {
+    const currentUser = JSON.parse(
+      localStorage.getItem('currentUser') as string
+    );
+    return this.http.post('/api/post/getPostsByAuthor', {
+      author_id: currentUser.id,
+    });
+  }
 }

@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PostComponent {
   @Input() post: any = {};
+  @Input() read = false;
+  @Input() admin = false;
 }
