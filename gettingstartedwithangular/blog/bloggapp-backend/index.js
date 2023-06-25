@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const url = "mongodb://localhost/blog";
 const User = require("./models/user");
+const Post = require("./models/post");
 
 mongoose.set("strictQuery", true);
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,5 +35,20 @@ app.post("/api/user/login", async (req, res) => {
     message: "Login Failed",
   });
 });
+
+app.get("/api/post/getAllPosts",async (req,res)=>{
+  let posts =  await Post.find({})
+
+  if(posts.length >0){
+    return res.status(200).json({
+      status: "success",
+      data: posts,
+    })
+  }
+  return res.status(404).json({
+    status: "fail",
+    message: "No posts found",
+  })
+})
 
 app.listen(3000, () => console.log("Blog app listening on port 3000!"));
