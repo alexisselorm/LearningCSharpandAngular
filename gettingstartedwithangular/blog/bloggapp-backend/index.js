@@ -51,4 +51,31 @@ app.get("/api/post/getAllPosts",async (req,res)=>{
   })
 })
 
+app.post('/api/post/getPostsByAuthor', async (req, res)=>{
+  let posts =  await Post.find({author_id:req.body.author_id})
+  if(posts.length >0){
+    return res.status(200).json({
+      status: "success",
+      data: posts,
+    })
+  }
+  return res.status(400).json({
+    status: "fail",
+    message: "No posts found",
+  })
+})
+
+app.post('/api/post/createPost',async(req,res)=>{
+  const post = new Post({
+    title: req.body.title,
+    text: req.body.text,
+    author_id: new mongoose.Types.ObjectId(req.body.author_id),
+  })
+  await post.save()
+  return res.status(200).json({
+    status: "success",
+    data: post,
+  })
+})
+
 app.listen(3000, () => console.log("Blog app listening on port 3000!"));
