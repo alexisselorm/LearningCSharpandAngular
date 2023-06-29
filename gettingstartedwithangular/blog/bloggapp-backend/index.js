@@ -87,4 +87,13 @@ app.put('/api/post/updatePost',async(req,res)=>{
     })
 })
 
+app.post('/api/post/deletePost',async(req,res)=>{
+  let deletedPost = await Post.findByIdAndRemove({_id: req.body.id})
+  console.log(deletedPost);
+  return res.status(200).json({
+      status: "success",
+      data: deletedPost,
+    })
+})
+
 app.listen(3000, () => console.log("Blog app listening on port 3000!"));

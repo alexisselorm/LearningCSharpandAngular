@@ -8,11 +8,22 @@ import { Post } from '../models/post.model';
 export class CommonService {
   public postAdded_Observable = new Subject();
   public postToEdit_Observable = new Subject();
-
-  postToEdit: Post = new Post('', '');
+  public postToDelete_Observable = new Subject();
   public postToAdd_Observable = new Subject();
 
+  postToEdit: Post = new Post('', '');
+  postToDelete: Post = new Post('', '');
   constructor() {}
+
+  notifyPostDelete(msg: string) {
+    this.postToDelete_Observable.next(msg);
+  }
+
+  setPostToDelete(post: any) {
+    this.postToDelete = new Post('', '');
+    this.postToDelete.setId(post._id);
+    this.notifyPostDelete('');
+  }
 
   notifyPostAddition(msg: string) {
     this.postAdded_Observable.next(msg);

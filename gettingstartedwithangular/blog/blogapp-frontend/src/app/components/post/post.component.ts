@@ -16,4 +16,8 @@ export class PostComponent {
   setPostToEdit(post: any) {
     this.commonService.setPostToEdit(post);
   }
+
+  setPostToDelete(post: any) {
+    this.commonService.setPostToDelete(post);
+  }
 }
