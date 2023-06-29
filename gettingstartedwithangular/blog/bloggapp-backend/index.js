@@ -78,4 +78,13 @@ app.post('/api/post/createPost',async(req,res)=>{
   })
 })
 
+app.put('/api/post/updatePost',async(req,res)=>{
+  let updatedPost = await Post.updateOne({_id: req.body.id},{title: req.body.title, text: req.body.text})
+  console.log(updatedPost);
+  return res.status(200).json({
+      status: "success",
+      data: updatedPost,
+    })
+})
+
 app.listen(3000, () => console.log("Blog app listening on port 3000!"));

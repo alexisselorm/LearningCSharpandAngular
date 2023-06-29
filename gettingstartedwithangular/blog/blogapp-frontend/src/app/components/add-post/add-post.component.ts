@@ -25,6 +25,21 @@ export class AddPostComponent {
       title: ['', Validators.required],
       text: ['', Validators.required],
     });
+
+    this.commonService.postToEdit_Observable.subscribe((res) => {
+      this.setPostToEdit();
+    });
+
+    this.commonService.postToAdd_Observable.subscribe((res) => {
+      this.setPostToEdit();
+    });
+  }
+  setPostToEdit() {
+    this.post = this.commonService.postToEdit;
+    this.postForm = this.formBuilder.group({
+      title: [this.post.getTitle(), Validators.required],
+      text: [this.post.getText(), Validators.required],
+    });
   }
 
   get controls() {
@@ -36,23 +51,65 @@ export class AddPostComponent {
     if (this.postForm.invalid) {
       return;
     }
-    this.post = new Post(this.postForm.value.title, this.postForm.value.text);
-    this.addPostService.addPost(this.post).subscribe({
-      next: (result: any) => {
-        if (result['status'] == 'success') {
-          this.closeBtn.nativeElement.click();
-          this.commonService.notifyPostAddition('');
-        } else {
-          console.log('Error adding post');
-        }
-      },
-      error: (error: any) => {
-        console.error('Error adding post. Error subscriber');
-      },
-      complete: () => {
-        this.submitted = false;
-        console.info('Completed successfully');
-      },
-    });
+    this.post.setTitle(this.controls['title'].value);
+    this.post.setText(this.controls['text'].value);
+
+    if (this.post.getId() === '') {
+      console.log('post: ' + this.post);
+      this.addPostService.addPost(this.post).subscribe({
+        next: (result: any) => {
+          if (result['status'] == 'success') {
+            this.closeBtn.nativeElement.click();
+            this.commonService.notifyPostAddition('');
+          } else {
+            console.log('Error Adding post');
+          }
+        },
+        error: (error: any) => {
+          console.log('Error Adding post', error.message);
+        },
+        complete: () => {
+          this.submitted = false;
+          console.info('complete');
+        },
+      });
+    } else {
+      this.addPostService.updatePost(this.post).subscribe({
+        next: (result: any) => {
+          if (result['status'] == 'success') {
+            this.closeBtn.nativeElement.click();
+            this.commonService.notifyPostAddition('');
+          } else {
+            console.log('Error Updating post');
+          }
+        },
+        error: (error: any) => {
+          console.log('Error Updating post', error.message);
+        },
+        complete: () => {
+          this.submitted = false;
+          console.info('complete');
+        },
+      });
+    }
+
+    // this.post = new Post(this.postForm.value.title, this.postForm.value.text);
+    // this.addPostService.addPost(this.post).subscribe({
+    //   next: (result: any) => {
+    //     if (result['status'] == 'success') {
+    //       this.closeBtn.nativeElement.click();
+    //       this.commonService.notifyPostAddition('');
+    //     } else {
+    //       console.log('Error adding post');
+    //     }
+    //   },
+    //   error: (error: any) => {
+    //     console.error('Error adding post. Error subscriber');
+    //   },
+    //   complete: () => {
+    //     this.submitted = false;
+    //     console.info('Completed successfully');
+    //   },
+    // });
   }
 }

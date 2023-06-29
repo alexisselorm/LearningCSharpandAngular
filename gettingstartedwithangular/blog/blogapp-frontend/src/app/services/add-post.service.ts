@@ -17,4 +17,15 @@ export class AddPostService {
       author_id: user.id,
     });
   }
+
+  updatePost(post: Post) {
+    console.log(post);
+    const user = JSON.parse(localStorage.getItem('currentUser') as string);
+    return this.http.put('/api/post/updatePost', {
+      id: post.getId(),
+      title: post.getTitle(),
+      text: post.getText(),
+      author_id: user.id,
+    });
+  }
 }

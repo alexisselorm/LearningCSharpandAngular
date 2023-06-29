@@ -15,4 +15,17 @@ export class Post {
   getText() {
     return this.text;
   }
+  getId() {
+    return this.id;
+  }
+
+  setTitle(title: string) {
+    this.title = title;
+  }
+  setText(text: string) {
+    this.text = text;
+  }
+  setId(id: string) {
+    this.id = id;
+  }
 }
