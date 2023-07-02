@@ -62,3 +62,4 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyB
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\obj\Debug\net6.0\MyBGList.pdb
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\obj\Debug\net6.0\MyBGList.genruntimeconfig.cache
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\obj\Debug\net6.0\ref\MyBGList.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\appsettings.Staging.json
