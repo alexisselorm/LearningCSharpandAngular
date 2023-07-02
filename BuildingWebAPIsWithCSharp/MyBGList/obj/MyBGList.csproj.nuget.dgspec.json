@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\MyBGList.csproj": {}
+    "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\MyBGList.csproj": {
+    "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\MyBGList.csproj",
+        "projectUniqueName": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
         "projectName": "MyBGList",
-        "projectPath": "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\MyBGList.csproj",
+        "projectPath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
         "packagesPath": "C:\\Users\\AGKove\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\obj\\",
+        "outputPath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AGKove\\AppData\\Roaming\\NuGet\\NuGet.Config",

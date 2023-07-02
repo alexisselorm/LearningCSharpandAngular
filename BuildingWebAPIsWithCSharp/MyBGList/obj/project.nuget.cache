@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jbKzC0caLJkFy4eYx6hIpY2BV5Ocuq+u60AjFyioPtad5/p4fUZVilaqeVfPmM3o0xCaiwbuNQkbtfQm1Dq/iQ==",
+  "dgSpecHash": "5kMIvvMPlSqaXE7yhOn07g0JKPJPshhEUVxQ/5Sv8lOcT0dHBHpawu+hhATyYQ1YdsaHgz25lvmri1gThfFr1w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AGKove\\Documents\\Projects\\MyBGList\\MyBGList.csproj",
+  "projectFilePath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
