@@ -8,6 +8,7 @@ namespace MyBGList.Controllers
     public class BoardGamesController : ControllerBase
     {
         private readonly ILogger<BoardGamesController> _logger;
+
         public BoardGamesController(ILogger<BoardGamesController> logger)
         {
             _logger = logger;
@@ -17,40 +18,31 @@ namespace MyBGList.Controllers
         [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
         public RestDTO<BoardGame[]> Get()
         {
-            _logger.LogInformation("Boardgames");
             return new RestDTO<BoardGame[]>()
             {
-                Data =
-                    new BoardGame[]{   new BoardGame(){
-                    Id=1,
-                    Name="Axis & Allies",
-                    Year=1981,
-                    MinPlayers=2,
-                    MaxPlayers=4,
-                    // Description="Axis & Allies is a board game developed by <NAME> and <NAME> in 1981. It is a 4 player board game, with a 2-player vs 4-player game."
+                Data = new [] {
+            new BoardGame() {
+                Id = 1,
+                Name = "Axis & Allies",
+                Year = 1981
+            },
+            new BoardGame() {
+                Id = 2,
+                Name = "Citadels",
+                Year = 2000
+            },
+            new BoardGame() {
+                Id = 3,
+                Name = "Terraforming Mars",
+                Year = 2016
+            }
         },
-                    new BoardGame(){
-                    Id=2,
-                    Name="Citadels",
-                    Year=2000,
-                    MinPlayers=2,
-                    MaxPlayers=4,
-                    // Description="Citadels is a board game developed by <NAME> and <NAME> in 2000. It is a 4 player board game, with a 2-player vs 4-player game."
-                    },
-                    new BoardGame(){
-                    Id=3,
-                    Name="Terraforming Mars",
-                    Year=2016,
-                    MinPlayers=2,
-                    MaxPlayers=4,
-                    // Description="Terraforming Mars is a board game developed by <NAME> and <NAME> in 2016. It is a 4 player board game, with a 2-player vs 4-player game."
-                    }
-                },
-                Links = new List<LinkDTO>
-                 {
-                     new LinkDTO(
-                         Url.Action(null,"BoardGames",null,Request.Scheme)!,"self","GET")
-                 }
+                Links = new List<LinkDTO> {
+            new LinkDTO(
+                Url.Action(null, "BoardGames", null, Request.Scheme)!,
+                "self",
+                "GET"),
+        }
             };
         }
     }
