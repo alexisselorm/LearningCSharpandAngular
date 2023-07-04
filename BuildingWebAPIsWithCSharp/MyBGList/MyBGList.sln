@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBGList", "MyBGList.csproj", "{BC1AA656-D145-480D-96C3-3946B115CC0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBGList", "MyBGList.csproj", "{BC1AA656-D145-480D-96C3-3946B115CC0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYBGList_ApiVersion", "..\MYBGList_ApiVersion\MYBGList_ApiVersion.csproj", "{36E54B26-0ED7-4F12-9B4C-97A9C5052B2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BC1AA656-D145-480D-96C3-3946B115CC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC1AA656-D145-480D-96C3-3946B115CC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC1AA656-D145-480D-96C3-3946B115CC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E54B26-0ED7-4F12-9B4C-97A9C5052B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E54B26-0ED7-4F12-9B4C-97A9C5052B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E54B26-0ED7-4F12-9B4C-97A9C5052B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E54B26-0ED7-4F12-9B4C-97A9C5052B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
