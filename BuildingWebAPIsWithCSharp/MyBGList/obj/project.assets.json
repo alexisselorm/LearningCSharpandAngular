@@ -3894,11 +3894,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
+      "projectUniqueName": "c:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
       "projectName": "MyBGList",
-      "projectPath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
+      "projectPath": "c:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
       "packagesPath": "C:\\Users\\AGKove\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\obj\\",
+      "outputPath": "c:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AGKove\\AppData\\Roaming\\NuGet\\NuGet.Config",
