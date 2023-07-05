@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBGList.DTO;
+using MyBGList.Models;
 
 namespace MyBGList.Controllers
 {
@@ -20,7 +21,7 @@ namespace MyBGList.Controllers
         {
             return new RestDTO<BoardGame[]>()
             {
-                Data = new [] {
+                Data = new[] {
             new BoardGame() {
                 Id = 1,
                 Name = "Axis & Allies",
