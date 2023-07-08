@@ -21,15 +21,20 @@ namespace MyBGList.Controllers
 
         [HttpGet(Name = "GetBoardGames")]
         [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
-        public async Task<RestDTO<BoardGame[]>> Get()
+        public async Task<RestDTO<BoardGame[]>> Get(int pageIndex = 0, int pageSize = 10)
         {
-            var query = _context.BoardGames;
+            var query = _context.BoardGames
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize);
             return new RestDTO<BoardGame[]>()
             {
                 Data = await query.ToArrayAsync(),
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = await _context.BoardGames.CountAsync(),
                 Links = new List<LinkDTO> {
             new LinkDTO(
-                Url.Action(null, "BoardGames", null, Request.Scheme)!,
+                Url.Action(null, "BoardGames",new {pageIndex,pageSize}, Request.Scheme)!,
                 "self",
                 "GET"),
         }

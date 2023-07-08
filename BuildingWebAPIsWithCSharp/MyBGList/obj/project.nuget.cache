@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8F/lGyRz5oEejznfdt5ZYDEBpqmYYT0jUyVjDgFqroPKua3ZRp3KpXLjTTOvcLs+7b4nBcXPTBBocX/IzBQ8/g==",
+  "dgSpecHash": "qBQ007HLWTOVSw+xzY95zlg1s2UbK9kBzWGEgGzz197BayKjwxsKALwX6PJ2dJuGDnzgtr/IKRmTMhaSpY/ZPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AGKove\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
