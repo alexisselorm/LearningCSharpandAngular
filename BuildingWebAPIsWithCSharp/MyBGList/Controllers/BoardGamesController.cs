@@ -22,9 +22,13 @@ namespace MyBGList.Controllers
 
         [HttpGet(Name = "GetBoardGames")]
         [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
-        public async Task<RestDTO<BoardGame[]>> Get(int pageIndex = 0, int pageSize = 10, string? sortColumn = "Name", string? sortOrder = "ASC")
+        public async Task<RestDTO<BoardGame[]>> Get(int pageIndex = 0, int pageSize = 10, string? sortColumn = "Name", string? sortOrder = "ASC", string? filterQuery = null)
         {
-            var query = _context.BoardGames
+
+            var query = _context.BoardGames.AsQueryable();
+            if (!string.IsNullOrEmpty(filterQuery))
+                query = query.Where(b => b.Name.Contains(filterQuery));
+            query = query
                 .OrderBy($"{sortColumn} {sortOrder}")
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize);
