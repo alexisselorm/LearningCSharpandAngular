@@ -5,7 +5,7 @@ namespace MyBGList.Models
     public class ApplicationDbContext : DbContext
     {
 
-        public DbSet<BoardGame> BoardsGame => Set<BoardGame>();
+        public DbSet<BoardGame> BoardGames => Set<BoardGame>();
         public DbSet<Domain> Domain => Set<Domain>();
         public DbSet<Mechanic> Mechanic => Set<Mechanic>();
         public DbSet<BoardGames_Domains> BoardGames_Domains => Set<BoardGames_Domains>();
