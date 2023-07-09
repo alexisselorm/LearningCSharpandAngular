@@ -25,7 +25,7 @@ namespace MyBGList.Controllers
 
         [HttpPut(Name = "Seed")]
         [ResponseCache(NoStore = true)]
-        public async Task<IActionResult> Put()
+        public async Task<IActionResult> Put(int? id = null)
         {
             var config = new CsvConfiguration(CultureInfo.GetCultureInfo("pt-BR"))
             {
@@ -41,12 +41,16 @@ namespace MyBGList.Controllers
 
             //EXECUTE THE SEEDER
             var records = csv.GetRecords<BggRecord>();
-            _logger.LogInformation(records.ToString());
             var skippedRows = 0;
 
             foreach (var record in records)
             {
-                if (!record.ID.HasValue || string.IsNullOrEmpty(record.Name) || existingGames.ContainsKey(record.ID.Value))
+                if (!record.ID.HasValue
+                    || string.IsNullOrEmpty(record.Name)
+                    || existingGames.ContainsKey(record.ID.Value)
+                    || (id.HasValue
+                    && id.Value != record.ID.Value)
+                    )
                 {
                     skippedRows++;
                     continue;
