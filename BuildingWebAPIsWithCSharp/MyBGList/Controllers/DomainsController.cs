@@ -19,6 +19,7 @@ namespace MyBGList.Controllers
 
         }
 
+        [HttpGet(Name = "GetDomains")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<RestDTO<Domain[]>> Get([FromQuery] RequestDTO<DomainDTO> input)
         {
@@ -38,6 +39,7 @@ namespace MyBGList.Controllers
                 Data = await query.ToArrayAsync(),
                 PageIndex = input.PageIndex,
                 PageSize = input.PageSize,
+                RecordCount = await _context.Domains.CountAsync(),
                 Links = new List<LinkDTO>{
                     new LinkDTO(Url.Action(null,"Domain",new {input.PageIndex,input.PageSize},Request.Scheme)!,"self","GET")
                 }
