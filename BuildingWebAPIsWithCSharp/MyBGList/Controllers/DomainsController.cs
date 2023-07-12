@@ -44,9 +44,32 @@ namespace MyBGList.Controllers
                     new LinkDTO(Url.Action(null,"Domain",new {input.PageIndex,input.PageSize},Request.Scheme)!,"self","GET")
                 }
             };
+        }
 
+        [HttpPatch(Name = "UpdateDomain")]
+        public async Task<RestDTO<Domain?>> Patch(DomainDTO model)
+        {
+            var domain = await _context.Domains.Where(d => d.Id == model.Id).FirstOrDefaultAsync();
+            var now = DateTime.Now;
 
+            if (domain != null)
+            {
+                if (!string.IsNullOrEmpty(model.Name))
+                    domain.Name = model.Name;
 
+                domain.LastModifiedDate = now;
+
+                _context.Domains.Update(domain);
+                await _context.SaveChangesAsync();
+
+            }
+            return new RestDTO<Domain?>()
+            {
+                Data = domain,
+                Links = new List<LinkDTO>{
+                        new LinkDTO(Url.Action(null,"Domain",model,Request.Scheme)!,"self","PATCH"),
+                    }
+            };
         }
     }
 }
