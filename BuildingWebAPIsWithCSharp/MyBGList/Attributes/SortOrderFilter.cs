@@ -10,7 +10,13 @@ namespace MyBGList.Attributes
 
         public void Apply(OpenApiParameter parameter, ParameterFilterContext context)
         {
-            var attribtues = context.ParameterInfo?.GetCustomAttributes(true).OfType<SortOrderValidatorAttribute>();
+            var attribtues = context.
+                ParameterInfo?.
+                GetCustomAttributes(true).
+                Union(context.ParameterInfo.ParameterType.GetProperties()
+                .Where(p => p.Name == parameter.Name).
+                SelectMany(p => p.GetCustomAttributes(true)))
+                .OfType<SortOrderValidatorAttribute>();
             if (attribtues != null)
             {
                 foreach (var attribute in attribtues)
