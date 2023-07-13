@@ -9,8 +9,6 @@ namespace MyBGList.DTO
 
         public string? Name { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
-
         public DateTime? LastModifiedDate { get; set; }
 
     }

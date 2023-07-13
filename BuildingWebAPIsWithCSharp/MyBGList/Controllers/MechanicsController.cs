@@ -49,7 +49,7 @@ namespace MyBGList.Controllers
         }
 
         [HttpPatch(Name = "UpdateMechanic")]
-        public async Task<RestDTO<Mechanic>> Patch(MechanicDTO model)
+        public async Task<RestDTO<Mechanic?>> Patch(MechanicDTO model)
         {
             var mechanic = await _context.Mechanics.Where(m => m.Id == model.Id).FirstOrDefaultAsync();
             var now = DateTime.Now;
@@ -64,7 +64,7 @@ namespace MyBGList.Controllers
                 _context.Mechanics.Update(mechanic);
                 await _context.SaveChangesAsync();
             }
-            return new RestDTO<Mechanic>()
+            return new RestDTO<Mechanic?>()
             {
                 Data = mechanic,
                 Links = new List<LinkDTO>
