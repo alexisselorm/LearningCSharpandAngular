@@ -10,6 +10,7 @@ namespace MyBGList.DTO
         public int PageIndex { get; set; } = 0;
 
         [DefaultValue(10)]
+        [Range(0, 100)]
         public int PageSize { get; set; } = 10;
 
         [DefaultValue("Name")]
