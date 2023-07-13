@@ -72,5 +72,30 @@ namespace MyBGList.Controllers
                     }
             };
         }
+
+        [HttpDelete(Name = "DeleteDomain")]
+        [ResponseCache(NoStore = true)]
+        public async Task<RestDTO<Domain[]>> Delete(int[] idList)
+        {
+            var domains = new List<Domain>();
+            foreach (var id in idList)
+            {
+                var domain = await _context.Domains.Where(d => d.Id == id).FirstOrDefaultAsync();
+
+                if (domain != null)
+                {
+                    domains.Add(domain);
+                    _context.Domains.Remove(domain);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            return new RestDTO<Domain[]>
+            {
+                Data = domains.ToArray(),
+                Links = new List<LinkDTO> {
+                    new LinkDTO(Url.Action(null,"Domains",idList,Request.Scheme)!,"self","DELETE")
+                }
+            };
+        }
     }
 }
