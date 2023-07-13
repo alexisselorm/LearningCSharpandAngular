@@ -48,6 +48,62 @@ namespace MyBGList.Controllers
 
         }
 
+        [HttpPatch(Name = "UpdateMechanic")]
+        public async Task<RestDTO<Mechanic>> Patch(MechanicDTO model)
+        {
+            var mechanic = await _context.Mechanics.Where(m => m.Id == model.Id).FirstOrDefaultAsync();
+            var now = DateTime.Now;
+            if (mechanic != null)
+            {
+                if (!string.IsNullOrEmpty(model.Name))
+                {
+                    mechanic.Name = model.Name;
+                }
+                mechanic.LastModifiedDate = now;
+
+                _context.Mechanics.Update(mechanic);
+                await _context.SaveChangesAsync();
+            }
+            return new RestDTO<Mechanic>()
+            {
+                Data = mechanic,
+                Links = new List<LinkDTO>
+                    {
+                        new LinkDTO(Url.Action(null,"Mechanics",model,Request.Scheme)!,"self","PATCH")
+                    }
+            };
+
+        }
+
+        [HttpDelete(Name = "DeleteMechanic")]
+        [ResponseCache(NoStore = true)]
+        public async Task<RestDTO<Mechanic[]>> Delete(int[] idList)
+        {
+            var mechanics = new List<Mechanic>();
+            foreach (var id in idList)
+            {
+
+                var mechanic = await _context.Mechanics.Where(m => m.Id == id).FirstOrDefaultAsync();
+                if (mechanic != null)
+                {
+                    mechanics.Add(mechanic);
+                    _context.Mechanics.Remove(mechanic);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            return new RestDTO<Mechanic[]>
+            {
+                Data = mechanics.ToArray(),
+                Links = new List<LinkDTO>
+                {
+             new LinkDTO(
+                    Url.Action(null, "Mechanics", idList, Request.Scheme)!,"self","DELETE")
+                }
+            };
+
+
+        }
+
 
     }
 }

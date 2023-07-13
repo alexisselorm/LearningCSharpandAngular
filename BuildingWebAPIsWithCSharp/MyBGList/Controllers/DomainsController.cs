@@ -47,6 +47,7 @@ namespace MyBGList.Controllers
         }
 
         [HttpPatch(Name = "UpdateDomain")]
+        [ResponseCache(NoStore = true)]
         public async Task<RestDTO<Domain?>> Patch(DomainDTO model)
         {
             var domain = await _context.Domains.Where(d => d.Id == model.Id).FirstOrDefaultAsync();
@@ -67,7 +68,7 @@ namespace MyBGList.Controllers
             {
                 Data = domain,
                 Links = new List<LinkDTO>{
-                        new LinkDTO(Url.Action(null,"Domain",model,Request.Scheme)!,"self","PATCH"),
+                        new LinkDTO(Url.Action(null,"Domains",model,Request.Scheme)!,"self","PATCH"),
                     }
             };
         }
