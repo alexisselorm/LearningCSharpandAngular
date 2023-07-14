@@ -26,6 +26,7 @@ namespace MyBGList.Controllers
             [FromQuery] RequestDTO<BoardGameDTO> input
             )
         {
+            _logger.LogInformation(50110, "Get method started");
 
             var query = _context.BoardGames.AsQueryable();
             if (!string.IsNullOrEmpty(input.FilterQuery))

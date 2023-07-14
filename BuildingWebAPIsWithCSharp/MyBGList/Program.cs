@@ -1,10 +1,17 @@
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBGList.Attributes;
 using MyBGList.Models;
+using System.Diagnostics;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging
+    .ClearProviders()
+    .AddSimpleConsole()
+    .AddDebug();
 
 // Add services to the container.
 
@@ -63,7 +70,21 @@ if (app.Environment.IsDevelopment())
 if (app.Configuration.GetValue<bool>("UseDeveloperExceptionPage"))
     app.UseDeveloperExceptionPage();
 else
-    app.UseExceptionHandler("/error");
+    app.UseExceptionHandler(action =>
+    {
+        action.Run(async context =>
+        {
+            var exceptionHandler = context.Features.Get<IExceptionHandlerPathFeature>();
+
+
+            var details = new ProblemDetails();
+            details.Detail = exceptionHandler?.Error.Message;
+            details.Extensions["traceId"] = Activity.Current?.Id ?? context.TraceIdentifier;
+            details.Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1";
+            details.Status = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsync(JsonSerializer.Serialize(details));
+        });
+    });
 
 app.UseHttpsRedirection();
 
@@ -74,8 +95,19 @@ app.UseAuthorization();
 // Minimal API
 app.MapGet("/error",
     [EnableCors("AnyOrigin")]
-[ResponseCache(NoStore = true)] () =>
-    Results.Problem());
+[ResponseCache(NoStore = true)] (HttpContext context) =>
+    {
+        //TODO: logging sending notifications ,etc
+        var exceptionHandler = context.Features.Get<IExceptionHandlerPathFeature>();
+
+
+        var details = new ProblemDetails();
+        details.Detail = exceptionHandler?.Error.Message;
+        details.Extensions["traceId"] = Activity.Current?.Id ?? context.TraceIdentifier;
+        details.Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1";
+        details.Status = StatusCodes.Status500InternalServerError;
+        return Results.Problem(details);
+    });
 
 app.MapGet("/error/test",
     [EnableCors("AnyOrigin")]
