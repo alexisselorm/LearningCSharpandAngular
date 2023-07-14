@@ -111,3 +111,5 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyB
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Serilog.Enrichers.Environment.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Serilog.Enrichers.Thread.dll
