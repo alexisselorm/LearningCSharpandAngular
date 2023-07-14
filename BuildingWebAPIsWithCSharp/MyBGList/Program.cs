@@ -13,7 +13,7 @@ builder.Logging
     .ClearProviders()
     .AddSimpleConsole()
     .AddDebug()
-    .AddApplicationInsights(builder.Configuration["Azure:ApplicationInsights:InstumentationKey"])
+    .AddApplicationInsights(telemetry => telemetry.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"], loggerOptions => { })
     ;
 
 // Add services to the container.
