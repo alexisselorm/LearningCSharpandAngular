@@ -6,6 +6,7 @@ using MyBGList.Attributes;
 using MyBGList.Constants;
 using MyBGList.Models;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -21,11 +22,22 @@ builder.Host.UseSerilog((ctx, lc) =>
 {
     lc.ReadFrom.Configuration(ctx.Configuration);
     lc.WriteTo.MSSqlServer(
-        connectionString: ctx.Configuration.GetConnectionString("DefaulConnection"),
-        sinkOptions: new Serilog.Sinks.MSSqlServer.MSSqlServerSinkOptions
+        connectionString: ctx.Configuration.GetConnectionString("DefaultConnection"),
+        sinkOptions: new MSSqlServerSinkOptions
         {
             TableName = "LogEvents",
             AutoCreateSqlTable = true,
+        },
+        columnOptions: new ColumnOptions()
+        {
+            AdditionalColumns = new SqlColumn[] {
+                new SqlColumn()
+                {
+                    ColumnName="SourceContext",
+                    PropertyName="SourceContext",
+                    DataType= System.Data.SqlDbType.NVarChar
+                }
+            }
         });
 },
 writeToProviders: true);
