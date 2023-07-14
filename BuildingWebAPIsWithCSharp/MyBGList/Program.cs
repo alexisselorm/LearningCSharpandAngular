@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBGList.Attributes;
+using MyBGList.Constants;
 using MyBGList.Models;
 using System.Diagnostics;
 using System.Text.Json;
@@ -11,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging
     .ClearProviders()
     .AddSimpleConsole()
-    .AddDebug();
+    .AddDebug()
+    .AddApplicationInsights(builder.Configuration["Azure:ApplicationInsights:InstumentationKey"])
+    ;
 
 // Add services to the container.
 
@@ -106,6 +109,7 @@ app.MapGet("/error",
         details.Extensions["traceId"] = Activity.Current?.Id ?? context.TraceIdentifier;
         details.Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1";
         details.Status = StatusCodes.Status500InternalServerError;
+        app.Logger.LogError(CustomLogEvents.Error_Get, exceptionHandler?.Error, "An unhandled exception occurred");
         return Results.Problem(details);
     });
 

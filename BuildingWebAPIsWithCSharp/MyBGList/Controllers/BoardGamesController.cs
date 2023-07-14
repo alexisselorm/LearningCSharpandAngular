@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MyBGList.Constants;
 using MyBGList.DTO;
 using MyBGList.Models;
 using System.Linq.Dynamic.Core;
@@ -26,7 +27,7 @@ namespace MyBGList.Controllers
             [FromQuery] RequestDTO<BoardGameDTO> input
             )
         {
-            _logger.LogInformation(50110, "Get method started");
+            _logger.LogInformation(CustomLogEvents.BoardGamesController_Get, "Get method started");
 
             var query = _context.BoardGames.AsQueryable();
             if (!string.IsNullOrEmpty(input.FilterQuery))
