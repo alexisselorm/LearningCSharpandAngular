@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBGList.Attributes;
 using MyBGList.Constants;
 using MyBGList.Models;
+using Serilog;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -15,6 +16,19 @@ builder.Logging
     .AddDebug()
     .AddApplicationInsights(telemetry => telemetry.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"], loggerOptions => { })
     ;
+
+builder.Host.UseSerilog((ctx, lc) =>
+{
+    lc.ReadFrom.Configuration(ctx.Configuration);
+    lc.WriteTo.MSSqlServer(
+        connectionString: ctx.Configuration.GetConnectionString("DefaulConnection"),
+        sinkOptions: new Serilog.Sinks.MSSqlServer.MSSqlServerSinkOptions
+        {
+            TableName = "LogEvents",
+            AutoCreateSqlTable = true,
+        });
+},
+writeToProviders: true);
 
 // Add services to the container.
 
