@@ -114,3 +114,6 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyB
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Serilog.Enrichers.Environment.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Serilog.Enrichers.Thread.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Microsoft.Extensions.Caching.SqlServer.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\bin\Debug\net6.0\StackExchange.Redis.dll

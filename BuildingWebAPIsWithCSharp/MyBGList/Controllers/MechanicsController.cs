@@ -43,7 +43,7 @@ namespace MyBGList.Controllers
                     Skip(input.PageIndex * input.PageSize).
                     Take(input.PageSize);
                 result = await query.ToArrayAsync();
-                _distributedCache.Set(cacheKey, result, new TimeSpan(0, 0, 30));
+                _distributedCache.Set(cacheKey, result, new TimeSpan(0, 2, 0));
             }
 
 

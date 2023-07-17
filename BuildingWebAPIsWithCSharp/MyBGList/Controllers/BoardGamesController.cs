@@ -26,7 +26,7 @@ namespace MyBGList.Controllers
         }
 
         [HttpGet(Name = "GetBoardGames")]
-        [ResponseCache(CacheProfileName = "Any-60")]
+        [ResponseCache(CacheProfileName = "Client-120")]
         public async Task<RestDTO<BoardGame[]>> Get(
             [FromQuery] RequestDTO<BoardGameDTO> input
             )
@@ -48,7 +48,7 @@ namespace MyBGList.Controllers
                .Skip(input.PageIndex * input.PageSize)
                .Take(input.PageSize);
                 result = await query.ToArrayAsync();
-                _memoryCache.Set(cacheKey, result, new TimeSpan(0, 0, 30));
+                _memoryCache.Set(cacheKey, result, new TimeSpan(0, 2, 0));
             }
 
             return new RestDTO<BoardGame[]>()

@@ -99,6 +99,13 @@ builder.Services.AddControllers(
                 Location = ResponseCacheLocation.Any,
                 Duration = 60
             });
+        options.CacheProfiles.Add("Client-120",
+                new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Client,
+                    Duration = 120
+                }
+        );
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -116,12 +123,20 @@ builder.Services.AddResponseCaching(options =>
 
 builder.Services.AddMemoryCache();
 
-builder.Services.AddDistributedSqlServerCache(options =>
+//Unccomment if you want to use sql server caching
+//builder.Services.AddDistributedSqlServerCache(options =>
+//{
+//    options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//    options.SchemaName = "dbo";
+//    options.TableName = "AppCache";
+//});
+
+//Redis cache
+builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.SchemaName = "dbo";
-    options.TableName = "AppCache";
+    options.Configuration = builder.Configuration["Redis:ConnectionString"];
 });
+
 
 var app = builder.Build();
 
