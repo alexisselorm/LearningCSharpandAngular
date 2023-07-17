@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using MyBGList.DTO;
+using MyBGList.Extensions;
 using MyBGList.Models;
 using System.Linq.Dynamic.Core;
+using System.Text.Json;
 
 namespace MyBGList.Controllers
 {
@@ -12,31 +15,41 @@ namespace MyBGList.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<MechanicsController> _logger;
+        private readonly IDistributedCache _distributedCache;
 
-        public MechanicsController(ApplicationDbContext context, ILogger<MechanicsController> logger)
+        public MechanicsController(ApplicationDbContext context, ILogger<MechanicsController> logger, IDistributedCache distributedCache)
         {
             _logger = logger;
             _context = context;
+            _distributedCache = distributedCache;
         }
 
         [HttpGet(Name = "GetMechanics")]
         [ResponseCache(CacheProfileName = "Any-60")]
         public async Task<RestDTO<Mechanic[]>> Get([FromQuery] RequestDTO<MechanicDTO> input)
         {
-            var query = _context.Mechanics.AsQueryable();
-
-            if (!string.IsNullOrEmpty(input.FilterQuery))
+            Mechanic[]? result = null;
+            var cacheKey = $"{input.GetType()} - {JsonSerializer.Serialize(input)}";
+            if (!_distributedCache.TryGetValue<Mechanic[]>(cacheKey, out result))
             {
-                query = query.Where(m => m.Name.Contains(input.FilterQuery));
+                var query = _context.Mechanics.AsQueryable();
+
+                if (!string.IsNullOrEmpty(input.FilterQuery))
+                {
+                    query = query.Where(m => m.Name.Contains(input.FilterQuery));
+                }
+                query = query.
+                    OrderBy($"{input.SortColumn} {input.SortOrder}").
+                    Skip(input.PageIndex * input.PageSize).
+                    Take(input.PageSize);
+                result = await query.ToArrayAsync();
+                _distributedCache.Set(cacheKey, result, new TimeSpan(0, 0, 30));
             }
-            query = query.
-                OrderBy($"{input.SortColumn} {input.SortOrder}").
-                Skip(input.PageIndex * input.PageSize).
-                Take(input.PageSize);
+
 
             return new RestDTO<Mechanic[]>()
             {
-                Data = await query.ToArrayAsync(),
+                Data = result,
                 PageIndex = input.PageIndex,
                 PageSize = input.PageSize,
                 RecordCount = await _context.Mechanics.CountAsync(),

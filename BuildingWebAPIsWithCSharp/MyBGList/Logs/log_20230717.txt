@@ -115,3 +115,27 @@ SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].
 FROM [BoardGames] AS [b]
 ORDER BY [b].[Name]
 OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+22:00:09 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+22:00:09 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+22:00:09 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+22:00:09 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+22:00:09 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+22:01:20 [INF][AGKO-NB-01 #30 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.MechanicsController.Get (MyBGList)]Executed DbCommand (44ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[CreatedDate], [m].[LastModifiedDate], [m].[Name]
+FROM [Mechanics] AS [m]
+ORDER BY [m].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+22:01:21 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.MechanicsController.Get (MyBGList)]Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Mechanics] AS [m]
+22:01:41 [INF][AGKO-NB-01 #31 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.MechanicsController.Get (MyBGList)]Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Mechanics] AS [m]
+22:02:54 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.MechanicsController.Get (MyBGList)]Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[CreatedDate], [m].[LastModifiedDate], [m].[Name]
+FROM [Mechanics] AS [m]
+ORDER BY [m].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+22:02:54 [INF][AGKO-NB-01 #31 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.MechanicsController.Get (MyBGList)]Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Mechanics] AS [m]
