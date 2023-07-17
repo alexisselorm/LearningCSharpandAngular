@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[7.0.8, )"
             },
+            "Microsoft.Extensions.Caching.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
             "Microsoft.Extensions.Logging.ApplicationInsights": {
               "target": "Package",
               "version": "[2.21.0, )"

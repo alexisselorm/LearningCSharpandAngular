@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BjWDcDlGFVejubghsW4OgBUp2jVQvKzCXL0P+Lgt7U3Q2BZiGL6Sg5tudHzauvHhJnHbCilBwkLT8uMHSvpnIQ==",
+  "dgSpecHash": "zUhLXtyeLfkW4J7bSSeHvzU2Xr4zaLO4FabN7ehWJb4JR5WYn8GVpb+zPBEsy/byRUi7GLDInh2BnBwQpHWpNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.caching.sqlserver\\7.0.9\\microsoft.extensions.caching.sqlserver.7.0.9.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
@@ -53,7 +54,7 @@
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.logging.applicationinsights\\2.21.0\\microsoft.extensions.logging.applicationinsights.2.21.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.objectpool\\2.1.1\\microsoft.extensions.objectpool.2.1.1.nupkg.sha512",
-    "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\6.0.0\\microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\microsoft.identity.client\\4.45.0\\microsoft.identity.client.4.45.0.nupkg.sha512",
