@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using MyBGList.Constants;
 using MyBGList.DTO;
 using MyBGList.Models;
 using System.Linq.Dynamic.Core;
+using System.Text.Json;
 
 namespace MyBGList.Controllers
 {
@@ -14,15 +16,17 @@ namespace MyBGList.Controllers
 
         private readonly ApplicationDbContext _context;
         private readonly ILogger<BoardGamesController> _logger;
+        private readonly IMemoryCache _memoryCache;
 
-        public BoardGamesController(ILogger<BoardGamesController> logger, ApplicationDbContext context)
+        public BoardGamesController(ILogger<BoardGamesController> logger, ApplicationDbContext context, IMemoryCache memoryCache)
         {
             _logger = logger;
             _context = context;
+            _memoryCache = memoryCache;
         }
 
         [HttpGet(Name = "GetBoardGames")]
-        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
+        [ResponseCache(CacheProfileName = "Any-60")]
         public async Task<RestDTO<BoardGame[]>> Get(
             [FromQuery] RequestDTO<BoardGameDTO> input
             )
@@ -32,16 +36,27 @@ namespace MyBGList.Controllers
             var query = _context.BoardGames.AsQueryable();
             if (!string.IsNullOrEmpty(input.FilterQuery))
                 query = query.Where(b => b.Name.Contains(input.FilterQuery));
-            query = query
-                .OrderBy($"{input.SortColumn} {input.SortOrder}")
-                .Skip(input.PageIndex * input.PageSize)
-                .Take(input.PageSize);
+
+            var resultCount = await query.CountAsync();
+            BoardGame[]? result = null;
+
+            var cacheKey = $"{input.GetType()}-{JsonSerializer.Serialize(input)}";
+            if (!_memoryCache.TryGetValue<BoardGame[]>(cacheKey, out result))
+            {
+                query = query
+               .OrderBy($"{input.SortColumn} {input.SortOrder}")
+               .Skip(input.PageIndex * input.PageSize)
+               .Take(input.PageSize);
+                result = await query.ToArrayAsync();
+                _memoryCache.Set(cacheKey, result, new TimeSpan(0, 0, 30));
+            }
+
             return new RestDTO<BoardGame[]>()
             {
-                Data = await query.ToArrayAsync(),
+                Data = result,
                 PageIndex = input.PageIndex,
                 PageSize = input.PageSize,
-                RecordCount = await _context.BoardGames.CountAsync(),
+                RecordCount = resultCount,
                 Links = new List<LinkDTO> {
             new LinkDTO(
                 Url.Action(null, "BoardGames",new {input.PageIndex,input.PageSize}, Request.Scheme)!,
@@ -53,7 +68,8 @@ namespace MyBGList.Controllers
 
 
         [HttpPatch(Name = "UpdateBoardGame")]
-        [ResponseCache(NoStore = true)]
+        [ResponseCache(CacheProfileName = "NoCache")]
+
         public async Task<RestDTO<BoardGame?>> Patch(BoardGameDTO model)
         {
             var boardgame = await _context.BoardGames
@@ -99,7 +115,7 @@ namespace MyBGList.Controllers
 
 
         [HttpDelete(Name = "DeleteBoardGame")]
-        [ResponseCache(NoStore = true)]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<RestDTO<BoardGame[]?>> Delete(int[] idList)
         {
             var boardgames = new List<BoardGame>();

@@ -22,7 +22,7 @@ namespace MyBGList.Controllers
 
         [HttpGet(Name = "GetDomains")]
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(CacheProfileName = "Any-60")]
         [ManualValidationFilter]
         public async Task<ActionResult<RestDTO<Domain[]>>> Get([FromQuery] RequestDTO<DomainDTO> input)
         {
@@ -71,7 +71,7 @@ namespace MyBGList.Controllers
         }
 
         [HttpPatch(Name = "UpdateDomain")]
-        [ResponseCache(NoStore = true)]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<RestDTO<Domain?>> Patch(DomainDTO model)
         {
             var domain = await _context.Domains.Where(d => d.Id == model.Id).FirstOrDefaultAsync();
@@ -98,7 +98,7 @@ namespace MyBGList.Controllers
         }
 
         [HttpDelete(Name = "DeleteDomain")]
-        [ResponseCache(NoStore = true)]
+        [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<RestDTO<Domain[]>> Delete(int[] idList)
         {
             var domains = new List<Domain>();

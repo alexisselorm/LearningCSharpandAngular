@@ -1,0 +1,65 @@
+13:41:00 [INF][AGKO-NB-01 #1 - ]Now listening on: https://localhost:40443
+13:41:00 [INF][AGKO-NB-01 #1 - ]Now listening on: http://localhost:40080
+13:41:00 [INF][AGKO-NB-01 #1 - ]Application started. Press Ctrl+C to shut down.
+13:41:00 [INF][AGKO-NB-01 #1 - ]Hosting environment: Development
+13:41:00 [INF][AGKO-NB-01 #1 - ]Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+13:41:51 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker]Get method started
+13:41:54 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker]Executed DbCommand (99ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+13:41:55 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker]Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+13:43:01 [INF][AGKO-NB-01 #8 - .NET ThreadPool Worker]Get method started
+13:43:01 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker]Executed DbCommand (18ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+13:43:01 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker]Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+13:52:46 [INF][AGKO-NB-01 #1 - ] by DevelopmentNow listening on: https://localhost:40443
+13:52:46 [INF][AGKO-NB-01 #1 - ] by DevelopmentNow listening on: http://localhost:40080
+13:52:46 [INF][AGKO-NB-01 #1 - ] by DevelopmentApplication started. Press Ctrl+C to shut down.
+13:52:46 [INF][AGKO-NB-01 #1 - ] by DevelopmentHosting environment: Development
+13:52:46 [INF][AGKO-NB-01 #1 - ] by DevelopmentContent root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+13:53:04 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker] by DevelopmentGet method started
+13:53:10 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] by DevelopmentExecuted DbCommand (80ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+13:53:11 [INF][AGKO-NB-01 #18 - .NET ThreadPool Worker] by DevelopmentExecuted DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+14:15:40 [INF][AGKO-NB-01 #1 - ] in [ on Line]Now listening on: https://localhost:40443
+14:15:40 [INF][AGKO-NB-01 #1 - ] in [ on Line]Now listening on: http://localhost:40080
+14:15:40 [INF][AGKO-NB-01 #1 - ] in [ on Line]Application started. Press Ctrl+C to shut down.
+14:15:40 [INF][AGKO-NB-01 #1 - ] in [ on Line]Hosting environment: Development
+14:15:40 [INF][AGKO-NB-01 #1 - ] in [ on Line]Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+14:15:47 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [ on Line]Get method started
+14:15:49 [INF][AGKO-NB-01 #18 - .NET ThreadPool Worker] in [ on Line]Executed DbCommand (55ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+14:15:49 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [ on Line]Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+14:19:45 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+14:19:45 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+14:19:45 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+14:19:45 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+14:19:45 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+14:19:56 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+14:19:58 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (75ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+14:19:58 [INF][AGKO-NB-01 #16 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]

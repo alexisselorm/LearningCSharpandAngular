@@ -15,7 +15,7 @@ builder.Logging
     .ClearProviders()
     .AddSimpleConsole()
     .AddDebug()
-    .AddApplicationInsights(telemetry => telemetry.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"], loggerOptions => { })
+    //.AddApplicationInsights(telemetry => telemetry.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"], loggerOptions => { })
     ;
 
 builder.Host.UseSerilog((ctx, lc) =>
@@ -26,7 +26,7 @@ builder.Host.UseSerilog((ctx, lc) =>
     lc.Enrich.WithThreadName();
     lc.WriteTo.File("Logs/log_.txt", outputTemplate:
         "{Timestamp:HH:mm:ss} [{Level:u3}]" +
-        "[{MachineName} #{ThreadId} - {ThreadName}]" +
+        "[{MachineName} #{ThreadId} - {ThreadName}] in [{SourceContext}] [{ActionName}]" +
         "{Message:lj}{NewLine}{Exception}"
         , rollingInterval: RollingInterval.Day);
     lc.WriteTo.File("Logs/error_.txt", outputTemplate:
@@ -89,6 +89,16 @@ builder.Services.AddControllers(
             (x, y) => $"The value'{x}' is not valid for {y}");
         options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(
             () => "A value is required");
+
+        //Caching Profiles
+        options.CacheProfiles.Add("NoCache",
+            new CacheProfile() { NoStore = true });
+        options.CacheProfiles.Add("Any-60",
+            new CacheProfile()
+            {
+                Location = ResponseCacheLocation.Any,
+                Duration = 60
+            });
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -98,6 +108,13 @@ builder.Services.AddSwaggerGen(options =>
     options.ParameterFilter<SortOrderFilter>();
 });
 
+builder.Services.AddResponseCaching(options =>
+{
+    options.MaximumBodySize = 34 * 1024 * 1024;
+    options.SizeLimit = 50 * 1024 * 1024;
+});
+
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
@@ -131,7 +148,19 @@ app.UseHttpsRedirection();
 
 app.UseCors();
 
+app.UseResponseCaching();
+
 app.UseAuthorization();
+
+app.Use((context, next) =>
+{
+    context.Response.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
+    {
+        NoCache = true,
+        NoStore = true
+    };
+    return next.Invoke();
+});
 
 // Minimal API
 app.MapGet("/error",
@@ -168,6 +197,17 @@ app.MapGet("/cod/test",
         "</script>" +
         "<noscript>Your client does not support JavaScript</noscript>",
         "text/html"));
+
+app.MapGet("/cache/test/1", (HttpContext context) =>
+{
+    context.Response.Headers["cache-control"] = "no-cache, no-store";
+    return Results.Ok();
+});
+
+app.MapGet("/cache/test/2", (HttpContext context) =>
+{
+    return Results.Ok();
+});
 
 // Controllers
 app.MapControllers().RequireCors("AnyOrigin");

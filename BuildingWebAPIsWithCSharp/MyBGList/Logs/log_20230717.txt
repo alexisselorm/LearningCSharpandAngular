@@ -1,0 +1,117 @@
+18:36:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+18:36:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+18:36:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+18:36:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+18:36:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+18:42:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+18:42:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+18:42:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+18:42:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+18:42:47 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+18:43:03 [ERR][AGKO-NB-01 #9 - .NET ThreadPool Worker] in [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware] []An unhandled exception has occurred while executing the request.
+System.NotSupportedException: Serialization and deserialization of 'System.Type' instances are not supported. Path: $.Features.Key.
+ ---> System.NotSupportedException: Serialization and deserialization of 'System.Type' instances are not supported.
+   at System.Text.Json.Serialization.Converters.UnsupportedTypeConverter`1.Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ThrowNotSupportedException(WriteStack& state, NotSupportedException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCoreAsObject(Utf8JsonWriter writer, Object value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteCore[TValue](Utf8JsonWriter writer, TValue& value, JsonTypeInfo jsonTypeInfo, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteStreamAsync[TValue](Stream utf8Json, TValue value, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at System.Text.Json.JsonSerializer.WriteStreamAsync[TValue](Stream utf8Json, TValue value, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at System.Text.Json.JsonSerializer.WriteStreamAsync[TValue](Stream utf8Json, TValue value, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsyncSlow(Stream body, Object value, Type type, JsonSerializerOptions options, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteResultWriteResponse(IResult result, HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+18:47:03 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+18:47:03 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+18:47:03 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+18:47:03 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+18:47:03 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+18:47:50 [INF][AGKO-NB-01 #13 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+18:47:52 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (109ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+18:47:53 [INF][AGKO-NB-01 #8 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+18:56:56 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+18:56:56 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+18:56:56 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+18:56:56 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+18:56:56 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+18:57:01 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+18:57:04 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (90ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+18:57:04 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+20:23:28 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+20:23:28 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+20:23:28 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+20:23:28 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+20:23:28 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+20:23:36 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+20:23:38 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+20:24:15 [INF][AGKO-NB-01 #17 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (67ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+20:24:42 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+20:24:42 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+20:24:42 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+20:24:42 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+20:24:42 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+20:24:51 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+20:24:53 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+20:25:08 [INF][AGKO-NB-01 #5 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (65ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+20:25:23 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: https://localhost:40443
+20:25:23 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Now listening on: http://localhost:40080
+20:25:23 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Application started. Press Ctrl+C to shut down.
+20:25:23 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Hosting environment: Development
+20:25:23 [INF][AGKO-NB-01 #1 - ] in [Microsoft.Hosting.Lifetime] []Content root path: C:\Users\AGKove\Documents\LearningCSharpandAngular\BuildingWebAPIsWithCSharp\MyBGList\
+20:26:25 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+20:26:27 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+20:26:35 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (64ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+20:27:46 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [MyBGList.Controllers.BoardGamesController] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Get method started
+20:27:46 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [BoardGames] AS [b]
+20:27:50 [INF][AGKO-NB-01 #3 - .NET ThreadPool Worker] in [Microsoft.EntityFrameworkCore.Database.Command] [MyBGList.Controllers.BoardGamesController.Get (MyBGList)]Executed DbCommand (55ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[BGGRank], [b].[ComplexityAverage], [b].[CreatedDate], [b].[LastModifiedDate], [b].[MaxPlayers], [b].[MinAge], [b].[MinPlayers], [b].[Name], [b].[OwnedUsers], [b].[PlayTime], [b].[RatingAverage], [b].[UsersRated], [b].[Year]
+FROM [BoardGames] AS [b]
+ORDER BY [b].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
