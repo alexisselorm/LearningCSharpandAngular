@@ -11,6 +11,7 @@ namespace MyBGList.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class SeedController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +26,6 @@ namespace MyBGList.Controllers
         }
 
         [HttpPut(Name = "Seed")]
-        [Authorize]
         [ResponseCache(NoStore = true)]
         public async Task<IActionResult> Put(int? id = null)
         {
