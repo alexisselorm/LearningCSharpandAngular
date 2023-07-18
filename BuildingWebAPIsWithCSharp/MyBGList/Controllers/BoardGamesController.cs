@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using MyBGList.Constants;
@@ -68,6 +69,7 @@ namespace MyBGList.Controllers
 
 
         [HttpPatch(Name = "UpdateBoardGame")]
+        [Authorize]
         [ResponseCache(CacheProfileName = "NoCache")]
 
         public async Task<RestDTO<BoardGame?>> Patch(BoardGameDTO model)
@@ -115,6 +117,7 @@ namespace MyBGList.Controllers
 
 
         [HttpDelete(Name = "DeleteBoardGame")]
+        [Authorize]
         [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<RestDTO<BoardGame[]?>> Delete(int[] idList)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using MyBGList.DTO;
@@ -63,7 +64,7 @@ namespace MyBGList.Controllers
 
         [HttpPatch(Name = "UpdateMechanic")]
         [ResponseCache(CacheProfileName = "NoCache")]
-
+        [Authorize]
         public async Task<RestDTO<Mechanic?>> Patch(MechanicDTO model)
         {
             var mechanic = await _context.Mechanics.Where(m => m.Id == model.Id).FirstOrDefaultAsync();
@@ -92,6 +93,7 @@ namespace MyBGList.Controllers
 
         [HttpDelete(Name = "DeleteMechanic")]
         [ResponseCache(CacheProfileName = "NoCache")]
+        [Authorize]
         public async Task<RestDTO<Mechanic[]>> Delete(int[] idList)
         {
             var mechanics = new List<Mechanic>();
