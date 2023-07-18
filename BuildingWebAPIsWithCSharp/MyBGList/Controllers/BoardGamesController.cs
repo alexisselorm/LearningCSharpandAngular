@@ -69,7 +69,7 @@ namespace MyBGList.Controllers
 
 
         [HttpPatch(Name = "UpdateBoardGame")]
-        [Authorize]
+        [Authorize(Roles = RoleNames.Moderator)]
         [ResponseCache(CacheProfileName = "NoCache")]
 
         public async Task<RestDTO<BoardGame?>> Patch(BoardGameDTO model)
@@ -117,7 +117,7 @@ namespace MyBGList.Controllers
 
 
         [HttpDelete(Name = "DeleteBoardGame")]
-        [Authorize]
+        [Authorize(Roles = RoleNames.Administrator)]
         [ResponseCache(CacheProfileName = "NoCache")]
         public async Task<RestDTO<BoardGame[]?>> Delete(int[] idList)
         {

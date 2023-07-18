@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
@@ -112,6 +113,12 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
+
+//If you would like to add a claims based access control. This particular is for a moderator that has a phone number
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("ModeratorWithPolicy", policy => policy.RequireClaim(ClaimTypes.Role, RoleNames.Moderator).RequireClaim(ClaimTypes.MobilePhone));
+//});
 
 builder.Services.AddControllers(
     options =>
@@ -294,6 +301,20 @@ app.MapGet("/cache/test/1", (HttpContext context) =>
 app.MapGet("/cache/test/2", (HttpContext context) =>
 {
     return Results.Ok();
+});
+
+
+app.MapGet("/auth/test/1", [Authorize][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+{
+    return Results.Ok("You are authorized!");
+});
+app.MapGet("/auth/test/mod", [Authorize(Roles = RoleNames.Moderator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+{
+    return Results.Ok("You are authorized!");
+});
+app.MapGet("/auth/test/admin", [Authorize(Roles = RoleNames.Administrator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+{
+    return Results.Ok("You are authorized!");
 });
 
 // Controllers

@@ -2,6 +2,7 @@
 
 namespace MyBGList.DTO
 {
+
     public class RegisterDTO
     {
         [Required]
