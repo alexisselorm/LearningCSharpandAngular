@@ -24,13 +24,13 @@ builder.Host.UseSerilog((ctx, lc) =>
     lc.Enrich.WithMachineName();
     lc.Enrich.WithThreadId();
     lc.Enrich.WithThreadName();
-    lc.WriteTo.File("Logs/log_.txt", outputTemplate:
-        "{Timestamp:HH:mm:ss} [{Level:u3}]" +
+    lc.WriteTo.File("Logs/log_.log", outputTemplate:
+        "{Timestamp:HH:mm:ss} [{Level:u11}]" +
         "[{MachineName} #{ThreadId} - {ThreadName}] in [{SourceContext}] [{ActionName}]" +
         "{Message:lj}{NewLine}{Exception}"
         , rollingInterval: RollingInterval.Day);
-    lc.WriteTo.File("Logs/error_.txt", outputTemplate:
-        "{Timestamp:HH:mm:ss} [{Level:u3}]" +
+    lc.WriteTo.File("Logs/error_.log", outputTemplate:
+        "{Timestamp:HH:mm:ss} [{Level:u11}]" +
         "[{MachineName} #{ThreadId} - {ThreadName}]" +
         "{Message:lj}{NewLine}{Exception}", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error, rollingInterval: RollingInterval.Day);
     lc.WriteTo.MSSqlServer(
