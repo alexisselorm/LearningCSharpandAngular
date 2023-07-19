@@ -1,7 +1,7 @@
 ﻿using MyBGList.Attributes;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
+using DefaultValue = System.ComponentModel.DefaultValueAttribute;
 namespace MyBGList.DTO
 {
     public class RequestDTO<T> : IValidatableObject

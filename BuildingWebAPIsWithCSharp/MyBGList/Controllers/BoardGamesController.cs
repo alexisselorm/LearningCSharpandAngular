@@ -26,6 +26,7 @@ namespace MyBGList.Controllers
             _memoryCache = memoryCache;
         }
 
+        //GET ALL BOARDGAMES
         [HttpGet(Name = "GetBoardGames")]
         [ResponseCache(CacheProfileName = "Client-120")]
         public async Task<RestDTO<BoardGame[]>> Get(
@@ -66,6 +67,34 @@ namespace MyBGList.Controllers
         }
             };
         }
+
+        //GET BOARDGAME BY ID
+        [HttpPost("{id}")]
+        [ResponseCache(CacheProfileName = "Any-60")]
+        public async Task<RestDTO<BoardGame>> GetBoardGame(int id)
+        {
+            _logger.LogInformation("Get boardgame by id");
+            BoardGame? result = null;
+            var cacheKey = $"GetBoardGame-{id}";
+
+            if (!_memoryCache.TryGetValue<BoardGame>(cacheKey, out result))
+            {
+
+                result = await _context.BoardGames.FirstOrDefaultAsync(b => b.Id == id);
+                _memoryCache.Set(cacheKey, result, new TimeSpan(0, 2, 0));
+            }
+            return new RestDTO<BoardGame>()
+            {
+                Data = result,
+                Links = new List<LinkDTO>
+                    {
+                        new LinkDTO(
+                            Url.Action(null,"BoardGames",id,Request.Scheme)!,"self","GET")
+                    }
+            };
+
+        }
+
 
 
         [HttpPatch(Name = "UpdateBoardGame")]
