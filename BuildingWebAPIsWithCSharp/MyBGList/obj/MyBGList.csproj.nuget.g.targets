@@ -6,5 +6,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\7.0.1\buildTransitive\net6.0\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\7.0.1\buildTransitive\net6.0\Microsoft.Extensions.Logging.Abstractions.targets')" />
     <Import Project="$(NuGetPackageRoot)hotchocolate.data.entityframework\13.3.3\build\HotChocolate.Data.EntityFramework.targets" Condition="Exists('$(NuGetPackageRoot)hotchocolate.data.entityframework\13.3.3\build\HotChocolate.Data.EntityFramework.targets')" />
     <Import Project="$(NuGetPackageRoot)hotchocolate.aspnetcore\13.3.3\build\HotChocolate.AspNetCore.targets" Condition="Exists('$(NuGetPackageRoot)hotchocolate.aspnetcore\13.3.3\build\HotChocolate.AspNetCore.targets')" />
+    <Import Project="$(NuGetPackageRoot)grpc.tools\2.47.0\build\Grpc.Tools.targets" Condition="Exists('$(NuGetPackageRoot)grpc.tools\2.47.0\build\Grpc.Tools.targets')" />
   </ImportGroup>
 </Project>
