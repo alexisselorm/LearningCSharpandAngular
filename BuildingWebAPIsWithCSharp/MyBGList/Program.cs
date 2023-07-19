@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyBGList.Attributes;
 using MyBGList.Constants;
+using MyBGList.GraphQL;
 using MyBGList.Models;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
@@ -82,6 +83,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddGraphQLServer()
+    .AddAuthorization()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
+    .AddProjections()
+    .AddFiltering()
+    .AddSorting();
 
 builder.Services.AddIdentity<ApiUser, IdentityRole>(options =>
 {
@@ -255,6 +264,9 @@ app.Use((context, next) =>
     };
     return next.Invoke();
 });
+
+app.MapGraphQL();
+
 
 // Minimal API
 app.MapGet("/error",
