@@ -12,8 +12,9 @@ using System.Globalization;
 namespace MyBGList.Controllers
 {
     [Route("[controller]/[action]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = RoleNames.Administrator)]
     public class SeedController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

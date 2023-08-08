@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using MyBGList.Attributes;
 using MyBGList.Constants;
 using MyBGList.GraphQL;
 using MyBGList.gRPC;
 using MyBGList.Models;
+using MyBGList.Swagger;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.Json;
@@ -185,22 +186,24 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "bearer"
     });
 
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
+    //options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference
+    //            {
+    //                Type=ReferenceType.SecurityScheme,
+    //                Id="Bearer"
+    //            }
+    //        },
+    //        Array.Empty<string>()
+    //    }
+    //});
 
-
-
-    });
+    options.OperationFilter<AuthRequirementFilter>();
+    options.DocumentFilter<CustomDocumentFilter>();
+    options.RequestBodyFilter<PasswordRequestFilter>();
+    options.SchemaFilter<CustomKeyValueFilter>();
 });
 
 
@@ -326,15 +329,16 @@ app.MapGet("/cache/test/2", (HttpContext context) =>
 });
 
 
-app.MapGet("/auth/test/1", [Authorize][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+
+app.MapGet("/auth/test/1", [SwaggerOperation(Tags = new[] { "Auth" }, Summary = "Auth test #1 (authenticate users)", Description = "Returns 200 - OK if called by an authenticated user regardless of it roles")][Authorize][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
 {
     return Results.Ok("You are authorized!");
 });
-app.MapGet("/auth/test/mod", [Authorize(Roles = RoleNames.Moderator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+app.MapGet("/auth/test/mod", [SwaggerOperation(Tags = new[] { "Auth" }, Summary = "Auth test #2 (authenticate moderators)", Description = "Returns 200 - OK if called by an authenticated user with mod or admin privileges")][Authorize(Roles = RoleNames.Moderator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
 {
     return Results.Ok("You are authorized!");
 });
-app.MapGet("/auth/test/admin", [Authorize(Roles = RoleNames.Administrator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
+app.MapGet("/auth/test/admin", [SwaggerOperation(Tags = new[] { "Auth" }, Summary = "Auth test #3 (authenticate Admin)", Description = "Returns 200 - OK if called by an authenticated admin")][Authorize(Roles = RoleNames.Administrator)][ResponseCache(CacheProfileName = "NoCache")] (HttpContext context) =>
 {
     return Results.Ok("You are authorized!");
 });

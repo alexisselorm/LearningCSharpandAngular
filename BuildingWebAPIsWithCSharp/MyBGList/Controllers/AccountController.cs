@@ -48,7 +48,6 @@ namespace MyBGList.Controllers
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<ActionResult> Register(RegisterDTO input)
-
         {
             try
             {
