@@ -34,8 +34,19 @@ namespace MyBGList.Controllers
             _signInManager = signInManager;
         }
 
+        /// <summary>
+        /// Registers a new user
+        /// </summary>
+        /// <param name="input">A DTO containing the user's creds</param>
+        /// <returns>Creates a new user</returns>
+        /// <response code="201">User has been registered</response>
+        /// <response code="400">Invalid data</response>
+        /// <response code="500">An error occurred</response>
         [HttpPost(Name = "Register")]
         [ResponseCache(CacheProfileName = "NoCache")]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<ActionResult> Register(RegisterDTO input)
 
         {
@@ -77,9 +88,19 @@ namespace MyBGList.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, exceptionDetails);
             }
         }
-
+        /// <summary>
+        /// Logs a user in
+        /// </summary>
+        /// <param name="input">A DTO containing user creds</param>
+        /// <returns>The Bearer token in JWT format</returns>
+        /// <response code="200">User has been logged in</response>
+        /// <response code="400">Log in failed(bad request)</response>
+        /// <response code="401">Log in failed(unauthorized)</response>
         [HttpPost(Name = "Login")]
         [ResponseCache(CacheProfileName = "NoCache")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(ProblemDetails), 401)]
         public async Task<ActionResult> Login(LoginDTO input)
         {
             try

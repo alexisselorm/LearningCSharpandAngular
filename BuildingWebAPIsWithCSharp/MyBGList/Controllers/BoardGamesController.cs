@@ -5,6 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 using MyBGList.Constants;
 using MyBGList.DTO;
 using MyBGList.Models;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Linq.Dynamic.Core;
 using System.Text.Json;
 
@@ -29,8 +30,13 @@ namespace MyBGList.Controllers
         //GET ALL BOARDGAMES
         [HttpGet(Name = "GetBoardGames")]
         [ResponseCache(CacheProfileName = "Client-120")]
+        [SwaggerOperation(Summary = "Get a list of Board games", Description = "Retrieves a list of board games with custom paging, sorting, filtering rules")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Success")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Bad Request")]
         public async Task<RestDTO<BoardGame[]>> Get(
-            [FromQuery] RequestDTO<BoardGameDTO> input
+            [FromQuery]
+            [SwaggerParameter("A DTO object that can be used to customize the data-retrieval parameters")]
+        RequestDTO<BoardGameDTO> input
             )
         {
             _logger.LogInformation(CustomLogEvents.BoardGamesController_Get, "Get method started");
@@ -69,8 +75,9 @@ namespace MyBGList.Controllers
         }
 
         //GET BOARDGAME BY ID
-        [HttpPost("{id}")]
+        [HttpGet("{id}")]
         [ResponseCache(CacheProfileName = "Any-60")]
+        [SwaggerOperation(Summary = "Get a single boardgame by Id", Description = "Retrieves  a single board game with the given Id")]
         public async Task<RestDTO<BoardGame>> GetBoardGame(int id)
         {
             _logger.LogInformation("Get boardgame by id");
@@ -100,7 +107,7 @@ namespace MyBGList.Controllers
         [HttpPatch(Name = "UpdateBoardGame")]
         [Authorize(Roles = RoleNames.Moderator)]
         [ResponseCache(CacheProfileName = "NoCache")]
-
+        [SwaggerOperation(Summary = "Updates a boardgame", Description = "Updates the board game's data")]
         public async Task<RestDTO<BoardGame?>> Patch(BoardGameDTO model)
         {
             var boardgame = await _context.BoardGames
@@ -148,6 +155,7 @@ namespace MyBGList.Controllers
         [HttpDelete(Name = "DeleteBoardGame")]
         [Authorize(Roles = RoleNames.Administrator)]
         [ResponseCache(CacheProfileName = "NoCache")]
+        [SwaggerOperation(Summary = "Deletes a boardgame", Description = "Deletes a board game from the database")]
         public async Task<RestDTO<BoardGame[]?>> Delete(int[] idList)
         {
             var boardgames = new List<BoardGame>();

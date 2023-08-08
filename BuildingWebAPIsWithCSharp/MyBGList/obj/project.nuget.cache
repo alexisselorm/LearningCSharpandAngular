@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0pWpg41k62IYHs9SfZSvxaftd+ESjQHovNegtbAIwu4Xgc+Qe6NUG3y+a1EHwtGDWQ48qoMa118Qb5U6cwT/4Q==",
+  "dgSpecHash": "TAO9XJIxcpmvLp8WBxblFUE+9GK6fobKIE91kPhQiV7jvRefR3vVZYYhKfTyG3YIXo4IxlvZ2zPxVbroeL9xXA==",
   "success": true,
   "projectFilePath": "C:\\Users\\AGKove\\Documents\\LearningCSharpandAngular\\BuildingWebAPIsWithCSharp\\MyBGList\\MyBGList.csproj",
   "expectedPackageFiles": [
@@ -135,8 +135,9 @@
     "C:\\Users\\AGKove\\.nuget\\packages\\serilog.sinks.periodicbatching\\3.1.0\\serilog.sinks.periodicbatching.3.1.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\stackexchange.redis\\2.2.4\\stackexchange.redis.2.2.4.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\AGKove\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
