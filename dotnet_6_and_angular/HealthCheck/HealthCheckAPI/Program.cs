@@ -3,7 +3,15 @@ global using HealthCheckAPI;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(cfg =>
+    {
+        cfg.WithOrigins(builder.Configuration["AllowedOrigins"]);
+        cfg.AllowAnyHeader();
+        cfg.AllowAnyMethod();
+    });
+});
 builder.Services.AddHealthChecks()
     .AddCheck("ICMP_01", new ICMPHealthCheck("www.ryadel.com", 100))
     .AddCheck("ICMP_02", new ICMPHealthCheck("www.google.com", 100))
@@ -23,6 +31,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

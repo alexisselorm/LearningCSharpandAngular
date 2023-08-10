@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-health-check',
@@ -16,7 +16,6 @@ export class HealthCheckComponent implements OnInit {
     this.http.get<Result>(environment.baseUrl + 'api/health').subscribe(
       (result) => {
         this.result = result;
-        console.log(this.result.checks);
       },
       (error) => console.log(error)
     );
