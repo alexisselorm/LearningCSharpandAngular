@@ -11,6 +11,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\WorldCities</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\assets\img\" />
     <Folder Include="src\environments\" />
   </ItemGroup>
 </Project>
