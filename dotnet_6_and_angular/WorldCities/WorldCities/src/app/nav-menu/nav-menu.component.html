@@ -1,4 +1,8 @@
-<nav>
-  <a [routerLink]="['/']">Home</a>
-  <a [routerLink]="['/fetch-data']">Fetch Data</a>
-</nav>
+<header>
+  <mat-toolbar color="primary">
+    <button [routerLink]="['/']" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>home</mat-icon>
+    </button> |
+    <button [routerLink]="['/fetch-data']" mat-stroked-button color="primary">Fetch Data</button>
+  </mat-toolbar>
+</header>
