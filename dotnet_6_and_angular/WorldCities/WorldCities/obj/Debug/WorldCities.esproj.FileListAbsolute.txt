@@ -1,0 +1,2 @@
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCities\obj\Debug\WorldCities.esproj.SuggestedBindingRedirects.cache
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCities\obj\Debug\WorldCities.esproj.CoreCompileInputs.cache
