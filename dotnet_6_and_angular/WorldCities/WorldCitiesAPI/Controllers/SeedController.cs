@@ -30,6 +30,7 @@ namespace WorldCitiesAPI.Controllers
             var path = Path.Combine(_env.ContentRootPath, "Data/Sources/worldcities.xlsx");
 
             using var stream = System.IO.File.OpenRead(path);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using var excelPackage = new ExcelPackage(stream);
 
             //get the first worksheet
