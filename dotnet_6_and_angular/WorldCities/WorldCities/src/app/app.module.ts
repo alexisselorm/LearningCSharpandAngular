@@ -8,10 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from "@angular/material/button"
 import { CitiesComponent } from './cities/cities.component'
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +20,7 @@ import { CitiesComponent } from './cities/cities.component'
     CitiesComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule, MatButtonModule
+    BrowserModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
