@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorldCitiesAPI.Data.Models;
+using WorldCitiesAPI.Data.ResponseTypes;
 
 namespace WorldCitiesAPI.Controllers
 {
@@ -22,23 +18,19 @@ namespace WorldCitiesAPI.Controllers
 
         // GET: api/Cities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<City>>> GetCities()
+        public async Task<ApiResult<City>> GetCities(int pageIndex = 0, int pageSize = 10)
         {
-          if (_context.Cities == null)
-          {
-              return NotFound();
-          }
-            return await _context.Cities.ToListAsync();
+            return await ApiResult<City>.CreateAsync(_context.Cities.AsNoTracking(), pageIndex, pageSize);
         }
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<City>> GetCity(int id)
         {
-          if (_context.Cities == null)
-          {
-              return NotFound();
-          }
+            if (_context.Cities == null)
+            {
+                return NotFound();
+            }
             var city = await _context.Cities.FindAsync(id);
 
             if (city == null)
@@ -85,10 +77,10 @@ namespace WorldCitiesAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<City>> PostCity(City city)
         {
-          if (_context.Cities == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Cities'  is null.");
-          }
+            if (_context.Cities == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Cities'  is null.");
+            }
             _context.Cities.Add(city);
             await _context.SaveChangesAsync();
 
