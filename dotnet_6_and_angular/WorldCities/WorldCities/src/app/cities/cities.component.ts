@@ -16,7 +16,9 @@ export class CitiesComponent implements OnInit {
   defaultPageIndex: number = 0;
   defaultPageSize: number = 10;
   public defaultSortColumn: string = "name";
-  public defaultSortOrder: "asc"|"desc" = "asc";
+  public defaultSortOrder: "asc" | "desc" = "asc";
+  public defaultFilterColumn: string = "name";
+  filterQuery?: string;
 
   protected cities!: MatTableDataSource<City>;
   public displayedColumns: string[] = ["id", "name", "lat", "lon"]
@@ -26,20 +28,28 @@ export class CitiesComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  getData() {
+  getData(query?: string) {
     var pageEvent = new PageEvent();
     pageEvent.pageIndex = this.defaultPageIndex;
     pageEvent.pageSize = this.defaultPageSize;
+    this.filterQuery = query;
     this.getCities(pageEvent);
   }
 
   getCities(event: PageEvent) {
+ 
+
     let url = environment.baseUrl + 'api/Cities';
     let params = new HttpParams()
       .set("pageIndex", event.pageIndex.toString())
       .set("pageSize", event.pageSize.toString())
       .set("sortColumn", (this.sort) ? this.sort.active : this.defaultSortColumn)
       .set("sortOrder", (this.sort) ? this.sort.direction : this.defaultSortOrder);
+    if (this.filterQuery) {
+      params = params
+        .set("filterColumn", this.defaultFilterColumn)
+        .set("filterQuery", this.filterQuery)
+    }
     this.http.get<any>(url, { params }).subscribe((result) => {
 
       this.paginator.length = result.totalCount;
