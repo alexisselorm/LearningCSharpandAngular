@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
+using System.Reflection;
 
 namespace WorldCitiesAPI.Data.ResponseTypes;
 public class ApiResult<T>
@@ -6,13 +8,15 @@ public class ApiResult<T>
     ///<summary>
     ///Private constructor called by the CreatAsync method
     ///</summary>
-    private ApiResult(List<T> data, int count, int pageIndex, int pageSize)
+    private ApiResult(List<T> data, int count, int pageIndex, int pageSize, string? sortColumn, string? sortOrder)
     {
         Data = data;
         PageIndex = pageIndex;
         PageSize = pageSize;
         TotalCount = count;
         TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+        SortColumn = sortColumn;
+        SortOrder = sortOrder;
     }
 
     #region Methods
@@ -30,14 +34,33 @@ public class ApiResult<T>
     /// and all the relevant paging navigation info.
     /// </returns>
 
-    public static async Task<ApiResult<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
+    public static async Task<ApiResult<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize, string? sortColumn = null, string? sortOrder = null)
     {
         var count = await source.CountAsync();
+
+        if (!string.IsNullOrEmpty(sortColumn) && IsValidProperty(sortColumn))
+        {
+            sortOrder = !string.IsNullOrEmpty(sortOrder) && sortOrder.ToUpper() == "ASC" ? "ASC" : "DESC";
+            source = source.OrderBy(string.Format($"{sortColumn} {sortOrder}"));
+        }
+
         source = source.Skip(pageIndex * pageSize).Take(pageSize);
 
         var data = await source.ToListAsync();
 
-        return new ApiResult<T>(data, count, pageIndex, pageSize);
+        return new ApiResult<T>(data, count, pageIndex, pageSize, sortColumn, sortOrder);
+
+    }
+
+
+    public static bool IsValidProperty(string propertyName, bool throwExceptionIfNotFound = true)
+    {
+        var prop = typeof(T).GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+        if (prop == null && throwExceptionIfNotFound)
+        {
+            throw new NotSupportedException(string.Format($"Error: Property '{propertyName}' does not exist"));
+        }
+        return prop != null;
     }
     #endregion
 
@@ -90,6 +113,15 @@ public class ApiResult<T>
         }
     }
 
+    /// <summary>
+    /// Sorting Column name (or null if none set)
+    /// </summary>
+    public string? SortColumn { get; set; }
 
+    /// <summary>
+    /// Sorting Order ("ASC", "DESC" or null if none set)
+    /// </summary>
+    public string? SortOrder
+    { get; set; }
     #endregion
 }
