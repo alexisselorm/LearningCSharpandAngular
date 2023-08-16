@@ -53,8 +53,7 @@ public class ApiResult<T>
 
         if (!string.IsNullOrEmpty(filterColumn) && !string.IsNullOrEmpty(filterQuery) && IsValidProperty(filterColumn))
         {
-            var order = source.Where(string.Format("{0}.StartsWith(@0)", filterColumn), filterQuery);
-            source = order;
+            source = source.Where(string.Format("{0}.StartsWith(@0)", filterColumn), filterQuery);
         }
 
         var count = await source.CountAsync();
