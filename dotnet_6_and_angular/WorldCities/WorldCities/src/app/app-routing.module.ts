@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'cities', component: CitiesComponent },
-  { path: 'countrie', component: CountriesComponent },
+  { path: 'countries', component: CountriesComponent },
 ];
 
 @NgModule({
