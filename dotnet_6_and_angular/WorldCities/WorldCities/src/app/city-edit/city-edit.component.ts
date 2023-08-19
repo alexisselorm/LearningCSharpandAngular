@@ -1,10 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { City } from '../cities/city';
 import { Country } from '../countries/country';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-city-edit',
@@ -27,12 +35,37 @@ export class CityEditComponent implements OnInit {
   countries?: Country[];
   id?: number;
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    lat: new FormControl('', Validators.required),
-    lon: new FormControl('', Validators.required),
-    countryId: new FormControl('', Validators.required),
-  });
+  form: FormGroup = new FormGroup(
+    {
+      name: new FormControl('', Validators.required),
+      lat: new FormControl('', Validators.required),
+      lon: new FormControl('', Validators.required),
+      countryId: new FormControl('', Validators.required),
+    },
+    null,
+    this.isDupeCity()
+  );
+
+  //Custome async validator to check if a city has the same name, lat, and lon properties
+  isDupeCity(): AsyncValidatorFn {
+    return (
+      control: AbstractControl
+    ): Observable<{ [key: string]: any } | null> => {
+      let city = <City>{};
+      let url = environment.baseUrl + 'api/Cities/IsDupeCity';
+      city.id = this.id ? this.id : 0;
+      city.name = this.form.controls['name'].value;
+      city.lat = this.form.controls['lat'].value;
+      city.lon = this.form.controls['lon'].value;
+      city.countryId = this.form.controls['countryId'].value;
+
+      return this.http.post<boolean>(url, city).pipe(
+        map((result) => {
+          return result ? { isDupeCity: true } : null;
+        })
+      );
+    };
+  }
 
   loadCountries() {
     let url = environment.baseUrl + 'api/countries';
