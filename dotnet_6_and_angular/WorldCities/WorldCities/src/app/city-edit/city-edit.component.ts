@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { City } from '../cities/city';
+import { Country } from '../countries/country';
 
 @Component({
   selector: 'app-city-edit',
@@ -17,18 +18,36 @@ export class CityEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.loadCountries();
     this.loadData();
   }
 
   title?: string;
   city?: City;
+  countries?: Country[];
   id?: number;
 
   form: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    lat: new FormControl(''),
-    lon: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    lat: new FormControl('', Validators.required),
+    lon: new FormControl('', Validators.required),
+    countryId: new FormControl('', Validators.required),
   });
+
+  loadCountries() {
+    let url = environment.baseUrl + 'api/countries';
+    var params = new HttpParams()
+      .set('pageIndex', 0)
+      .set('pageSize', 9999)
+      .set('sortColumn', 'name');
+
+    this.http.get<any>(url, { params }).subscribe(
+      (result) => {
+        this.countries = result.data;
+      },
+      (error) => console.error(error)
+    );
+  }
 
   loadData() {
     //retrieve id from the id parameter
@@ -62,6 +81,7 @@ export class CityEditComponent implements OnInit {
       city.name = this.form.controls['name'].value;
       city.lat = +this.form.controls['lat'].value;
       city.lon = +this.form.controls['lon'].value;
+      city.countryId = this.form.controls['countryId'].value;
 
       let url = environment.baseUrl + 'api/cities/';
       if (this.id) {
