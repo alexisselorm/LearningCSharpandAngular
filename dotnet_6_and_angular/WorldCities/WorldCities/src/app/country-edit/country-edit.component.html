@@ -3,7 +3,7 @@
 
   <p *ngIf="id && !country"><em>Loading...</em></p>
 
-  <form [formGroup]="form" (ngSubmit)="(onSubmit)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <!--Name-->
     <mat-form-field>
       <mat-label>Name:</mat-label>

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from '../../environments/environment';
 import { Country } from './country';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-countries',
@@ -21,6 +22,7 @@ export class CountriesComponent implements OnInit {
 
   defaultFilterColumn: string = 'name';
   filterQuery?: string;
+  filterTextChanged: Subject<string> = new Subject<string>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -59,6 +61,17 @@ export class CountriesComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+  }
+
+  onFilterTextChanged(filterText: string) {
+    if (this.filterTextChanged.observers.length == 0) {
+      this.filterTextChanged
+        .pipe(debounceTime(1000), distinctUntilChanged())
+        .subscribe((query) => {
+          this.getData(query);
+        });
+    }
+    this.filterTextChanged.next(filterText);
   }
 
   ngOnInit(): void {

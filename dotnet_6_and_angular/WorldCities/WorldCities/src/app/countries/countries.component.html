@@ -17,7 +17,7 @@
   <input
     matInput
     #filter
-    (keyup)="getData(filter.value)"
+    (keyup)="onFilterTextChanged(filter.value)"
     placeholder="Filter by name (or part of it)..."
   />
 </mat-form-field>
