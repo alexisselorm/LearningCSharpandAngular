@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -18,13 +18,16 @@ import { map } from 'rxjs/operators';
   templateUrl: './country-edit.component.html',
   styleUrls: ['./country-edit.component.scss'],
 })
-export class CountryEditComponent {
+export class CountryEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private http: HttpClient
   ) {}
+  ngOnInit(): void {
+    this.loadData();
+  }
   title?: string;
   form: FormGroup = this.fb.group({
     name: ['', Validators.required, this.isDupeField('name')],
@@ -66,7 +69,7 @@ export class CountryEditComponent {
     // /retrieve Id from 'id' parameter
     let idParam = this.activatedRoute.snapshot.paramMap.get('id');
     this.id = idParam ? +idParam : 0;
-    let url = environment.baseUrl + '/api/Countries/' + this.id;
+    let url = environment.baseUrl + 'api/Countries/' + this.id;
     if (this.id) {
       //EDIT MODE
       // FETCH COUNTRY DATA FROM SERVER

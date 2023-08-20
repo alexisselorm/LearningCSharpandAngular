@@ -24,10 +24,10 @@ namespace WorldCitiesAPI.Controllers
             string? sortColumn = null,
             string? sortOrder = null,
             string? filterColumn = null,
-            string? fiterQuery = null)
+            string? filterQuery = null)
         {
 
-            return await ApiResult<Country>.CreateAsync(_context.Countries.AsNoTracking(), pageIndex, pageSize, sortColumn, sortOrder, filterColumn, fiterQuery);
+            return await ApiResult<Country>.CreateAsync(_context.Countries.AsNoTracking(), pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
 
         // GET: api/Countries/5
