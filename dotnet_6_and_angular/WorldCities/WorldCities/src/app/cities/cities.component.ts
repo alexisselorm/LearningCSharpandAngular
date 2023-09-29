@@ -21,7 +21,13 @@ export class CitiesComponent implements OnInit {
   filterQuery?: string;
   filterTextChanged: Subject<string> = new Subject<string>();
   protected cities!: MatTableDataSource<City>;
-  public displayedColumns: string[] = ['id', 'name', 'lat', 'lon'];
+  public displayedColumns: string[] = [
+    'id',
+    'name',
+    'lat',
+    'lon',
+    'countryName',
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

@@ -13,18 +13,21 @@ import { City } from '../cities/city';
 import { Country } from '../countries/country';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BaseFormComponent } from '../base-form.component';
 
 @Component({
   selector: 'app-city-edit',
   templateUrl: './city-edit.component.html',
   styleUrls: ['./city-edit.component.scss'],
 })
-export class CityEditComponent implements OnInit {
+export class CityEditComponent extends BaseFormComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    super();
+  }
   ngOnInit(): void {
     this.loadCountries();
     this.loadData();
@@ -35,11 +38,17 @@ export class CityEditComponent implements OnInit {
   countries?: Country[];
   id?: number;
 
-  form: FormGroup = new FormGroup(
+  override form: FormGroup = new FormGroup(
     {
       name: new FormControl('', Validators.required),
-      lat: new FormControl('', Validators.required),
-      lon: new FormControl('', Validators.required),
+      lat: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[-]?[0-9]+(\.[0-9]{1,4})?$/),
+      ]),
+      lon: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[-]?[0-9]+(\.[0-9]{1,4})?$/),
+      ]),
       countryId: new FormControl('', Validators.required),
     },
     null,

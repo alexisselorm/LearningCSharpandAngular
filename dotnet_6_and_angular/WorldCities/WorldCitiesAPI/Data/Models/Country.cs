@@ -42,12 +42,30 @@ namespace WorldCitiesAPI.Data.Models
         public string ISO3 { get; set; } = null!;
         #endregion
 
+  
         #region Navigation Properties
         ///<summary>
         /// A collection of all the cities related to this country
         /// </summary>
+        [JsonIgnore]
         public ICollection<City>? Cities { get; set; } = null!;
 
         #endregion
+        #region Client-Side Properties
+
+        ///<summary>
+        /// The number of cities related to this Country
+        /// </summary>
+        [NotMapped]
+        public int TotCities
+        {
+            get => Cities != null ? Cities.Count : _TotCities;
+            set => _TotCities = value;
+        }
+
+        private int _TotCities = 0;
+
+        #endregion
+
     }
 }

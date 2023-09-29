@@ -12,24 +12,27 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BaseFormComponent } from '../base-form.component';
 
 @Component({
   selector: 'app-country-edit',
   templateUrl: './country-edit.component.html',
   styleUrls: ['./country-edit.component.scss'],
 })
-export class CountryEditComponent implements OnInit {
+export class CountryEditComponent extends BaseFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private http: HttpClient
-  ) {}
+  ) {
+    super();
+  }
   ngOnInit(): void {
     this.loadData();
   }
   title?: string;
-  form: FormGroup = this.fb.group({
+  override form: FormGroup = this.fb.group({
     name: ['', Validators.required, this.isDupeField('name')],
     iso2: [
       '',
@@ -84,7 +87,7 @@ export class CountryEditComponent implements OnInit {
         (error) => console.error(error)
       );
     } else {
-      // CREATE MODE
+      // CREATE c
       this.title = 'Create a new country';
     }
   }
