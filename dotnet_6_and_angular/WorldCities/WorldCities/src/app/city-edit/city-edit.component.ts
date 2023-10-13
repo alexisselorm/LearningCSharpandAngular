@@ -14,6 +14,7 @@ import { Country } from '../countries/country';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseFormComponent } from '../base-form.component';
+import { CityService } from '../cities/city.service';
 
 @Component({
   selector: 'app-city-edit',
@@ -24,6 +25,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private cityService: CityService,
     private activatedRoute: ActivatedRoute
   ) {
     super();
@@ -36,7 +38,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
   title?: string;
   city?: City;
   countries?: Country[];
-  id?: number;
+  id!: number;
 
   override form: FormGroup = new FormGroup(
     {
@@ -68,7 +70,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
       city.lon = this.form.controls['lon'].value;
       city.countryId = this.form.controls['countryId'].value;
 
-      return this.http.post<boolean>(url, city).pipe(
+      return this.cityService.isDupeCity(city).pipe(
         map((result) => {
           return result ? { isDupeCity: true } : null;
         })
@@ -77,13 +79,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
   }
 
   loadCountries() {
-    let url = environment.baseUrl + 'api/countries';
-    var params = new HttpParams()
-      .set('pageIndex', 0)
-      .set('pageSize', 9999)
-      .set('sortColumn', 'name');
-
-    this.http.get<any>(url, { params }).subscribe(
+    this.cityService.getCountries(0, 9999, 'name', 'asc', null, null).subscribe(
       (result) => {
         this.countries = result.data;
       },
@@ -100,8 +96,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
     if (this.id) {
       // If Id exists Edit the city
       //fetch the city fro the server
-      url = url + this.id;
-      this.http.get<City>(url).subscribe(
+      this.cityService.get(this.id).subscribe(
         (response) => {
           this.city = response;
           this.title = 'Edit - ' + this.city.name;
@@ -129,7 +124,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
       if (this.id) {
         //EDIT MODE
         url = url + city.id;
-        this.http.put<City>(url, city).subscribe(
+        this.cityService.put(city).subscribe(
           (result) => {
             console.log('City ' + city!.id + ' has been updated');
 
@@ -140,7 +135,7 @@ export class CityEditComponent extends BaseFormComponent implements OnInit {
         );
       } else {
         //CREATE A NEW City
-        this.http.post<City>(url, city).subscribe(
+        this.cityService.post(city).subscribe(
           (result) => {
             console.log('City' + result.id + 'has been created');
 
