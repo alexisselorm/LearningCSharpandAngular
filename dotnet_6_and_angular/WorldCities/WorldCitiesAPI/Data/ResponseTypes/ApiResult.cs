@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using System.Reflection;
 
@@ -65,6 +66,8 @@ public class ApiResult<T>
         }
 
         source = source.Skip(pageIndex * pageSize).Take(pageSize);
+
+        var sql = source.ToParametrizedSql();
 
         var data = await source.ToListAsync();
 

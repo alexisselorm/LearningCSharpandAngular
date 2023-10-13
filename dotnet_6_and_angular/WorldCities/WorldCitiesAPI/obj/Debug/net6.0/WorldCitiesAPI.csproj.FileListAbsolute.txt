@@ -254,3 +254,15 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCit
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\EFCore.BulkExtensions.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Data.Sqlite.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\NetTopologySuite.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\NetTopologySuite.IO.SqlServerBytes.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Npgsql.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\SQLitePCLRaw.core.dll

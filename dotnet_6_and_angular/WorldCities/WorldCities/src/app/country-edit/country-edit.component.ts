@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseFormComponent } from '../base-form.component';
+import { CountryService } from '../countries/country.service';
 
 @Component({
   selector: 'app-country-edit',
@@ -24,6 +25,7 @@ export class CountryEditComponent extends BaseFormComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private countryService: CountryService,
     private http: HttpClient
   ) {
     super();
@@ -59,12 +61,13 @@ export class CountryEditComponent extends BaseFormComponent implements OnInit {
         .set('fieldName', fieldName)
         .set('fieldValue', control.value);
 
-      let url = environment.baseUrl + 'api/Countries/IsDupeField';
-      return this.http.post<boolean>(url, null, { params }).pipe(
-        map((result) => {
-          return result ? { isDupeField: true } : null;
-        })
-      );
+      return this.countryService
+        .isDupeField(this.id ?? 0, fieldName, control.value)
+        .pipe(
+          map((result) => {
+            return result ? { isDupeField: true } : null;
+          })
+        );
     };
   }
 
@@ -76,7 +79,7 @@ export class CountryEditComponent extends BaseFormComponent implements OnInit {
     if (this.id) {
       //EDIT MODE
       // FETCH COUNTRY DATA FROM SERVER
-      this.http.get<Country>(url).subscribe(
+      this.countryService.get(this.id).subscribe(
         (result) => {
           this.country = result;
           this.title = 'Edit - ' + this.country.name;
@@ -103,7 +106,7 @@ export class CountryEditComponent extends BaseFormComponent implements OnInit {
       if (this.id) {
         //EDIT MODE
         url = url + country.id;
-        this.http.put<Country>(url, country).subscribe(
+        this.countryService.put(country).subscribe(
           (result) => {
             console.log('Country' + country?.name + ' has been updated. ');
 
@@ -112,7 +115,7 @@ export class CountryEditComponent extends BaseFormComponent implements OnInit {
           (error) => console.error(error)
         );
       } else {
-        this.http.post<Country>(url, country).subscribe(
+        this.countryService.post(country).subscribe(
           (result) => {
             console.log('Country' + country?.name + ' has been created');
 
