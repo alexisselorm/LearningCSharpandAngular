@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CitiesComponent } from './cities/cities.component';
 import { AngularMaterialModule } from './angular-material.module';
@@ -20,7 +19,6 @@ import { CountryEditComponent } from './country-edit/country-edit.component';
     AppComponent,
     HomeComponent,
     NavMenuComponent,
-    FetchDataComponent,
     CitiesComponent,
     CountriesComponent,
     CityEditComponent,
