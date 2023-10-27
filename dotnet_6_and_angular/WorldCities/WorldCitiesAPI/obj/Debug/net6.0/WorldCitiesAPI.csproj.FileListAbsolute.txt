@@ -293,3 +293,9 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCit
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

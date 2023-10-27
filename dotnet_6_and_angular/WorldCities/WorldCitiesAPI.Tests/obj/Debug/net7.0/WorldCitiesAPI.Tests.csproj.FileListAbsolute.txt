@@ -355,3 +355,5 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCit
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net7.0\WorldCitiesAPI.Tests.pdb
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net7.0\WorldCitiesAPI.Tests.genruntimeconfig.cache
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net7.0\ref\WorldCitiesAPI.Tests.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
