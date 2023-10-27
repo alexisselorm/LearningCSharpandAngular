@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using System.Security;
@@ -13,10 +14,19 @@ namespace WorldCitiesAPI.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
 
-        public SeedController(ApplicationDbContext context, IWebHostEnvironment env)
+        //User
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConfiguration _configuration;
+
+        public SeedController(ApplicationDbContext context, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _env = env;
+            _userManager = userManager;
+            _configuration = configuration;
+            _roleManager = roleManager;
+
         }
 
         [HttpGet]
@@ -133,6 +143,13 @@ namespace WorldCitiesAPI.Controllers
                 Cities = numberOfCitiesAdded,
                 Countries = numberOfCountriesAdded
             });
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> CreateDefaultUsers()
+        {
+            throw new NotImplementedException();
         }
     }
 }
