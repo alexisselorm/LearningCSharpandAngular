@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using WorldCitiesAPI.Data;
@@ -28,12 +29,12 @@ namespace WorldCitiesAPI.Controllers
             string? filterQuery = null)
         {
 
-            return await ApiResult<CountryDTO>.CreateAsync(_context.Countries.AsNoTracking().Select( c=>new CountryDTO
+            return await ApiResult<CountryDTO>.CreateAsync(_context.Countries.AsNoTracking().Select(c => new CountryDTO
             {
-                Id=c.Id,
-                Name=c.Name,
-                ISO2=c.ISO2,
-                ISO3= c.ISO3,
+                Id = c.Id,
+                Name = c.Name,
+                ISO2 = c.ISO2,
+                ISO3 = c.ISO3,
                 TotCities = c.Cities!.Count
             }), pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
@@ -59,6 +60,8 @@ namespace WorldCitiesAPI.Controllers
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "RegisteredUser")]
+
         public async Task<IActionResult> PutCountry(int id, Country country)
         {
             if (id != country.Id)
@@ -90,6 +93,7 @@ namespace WorldCitiesAPI.Controllers
         // POST: api/Countries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<ActionResult<Country>> PostCountry(Country country)
         {
             if (_context.Countries == null)
@@ -104,6 +108,7 @@ namespace WorldCitiesAPI.Controllers
 
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteCountry(int id)
         {
             if (_context.Countries == null)
