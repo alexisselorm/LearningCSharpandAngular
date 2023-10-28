@@ -149,7 +149,83 @@ namespace WorldCitiesAPI.Controllers
         [HttpGet]
         public async Task<ActionResult> CreateDefaultUsers()
         {
-            throw new NotImplementedException();
+            //set the default role names
+            string role_RegisteredUser = "RegisteredUser";
+            string role_Administrator = "Administrator";
+
+            //create the default roles (if they don't exist yet).
+            if (await _roleManager.FindByNameAsync(role_RegisteredUser) == null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(role_RegisteredUser));
+            }
+            if (await _roleManager.FindByNameAsync(role_Administrator) == null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(role_Administrator));
+            }
+
+            //create a list to track the newly added users.
+            var addedList = new List<ApplicationUser>();
+
+            //CHECK if admin user already exists.
+            var email_Admin = "admin@email.com";
+            if (await _userManager.FindByNameAsync(email_Admin) == null)
+            {
+                //create a new admin Application user account
+                var user_Admin = new ApplicationUser
+                {
+                    UserName = email_Admin,
+                    Email = email_Admin,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                };
+                // insert the admin user into the DB
+                await _userManager.CreateAsync(user_Admin, _configuration["DefaultPsswords:Administrator"]);
+
+                //assign the 'RegisteredUser' and 'Administrator' roles
+                await _userManager.AddToRoleAsync(user_Admin, role_RegisteredUser);
+                await _userManager.AddToRoleAsync(user_Admin, role_Administrator);
+
+                //confirm the email and remove lockout
+                user_Admin.EmailConfirmed = true;
+                user_Admin.LockoutEnabled = false;
+
+                //add the admin to the added users list
+                addedList.Add(user_Admin);
+
+            }
+
+
+            //CHECK if standard user already exists.
+            var email_User = "user@email.com";
+            if (await _userManager.FindByNameAsync(email_User) == null)
+            {
+                //create a new standard user Application user account
+                var user_User = new ApplicationUser
+                {
+                    UserName = email_User,
+                    Email = email_User,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                };
+                // insert the user into the DB
+                await _userManager.CreateAsync(user_User, _configuration["DefaultPsswords:RegisteredUser"]);
+
+                //assign the 'RegisteredUser' role
+                await _userManager.AddToRoleAsync(user_User, role_RegisteredUser);
+
+                //confirm the email and remove lockout
+                user_User.EmailConfirmed = true;
+                user_User.LockoutEnabled = false;
+
+                //add the standard user to the added users list
+                addedList.Add(user_User);
+            }
+
+            //if we added at least one user, persist the changes nto the DB
+            if (addedList.Count > 0)
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            return new JsonResult(new { Count = addedList.Count, Users = addedList });
         }
     }
 }
