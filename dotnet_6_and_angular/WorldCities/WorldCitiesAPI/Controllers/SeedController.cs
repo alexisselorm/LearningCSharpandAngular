@@ -178,7 +178,7 @@ namespace WorldCitiesAPI.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                 };
                 // insert the admin user into the DB
-                await _userManager.CreateAsync(user_Admin, _configuration["DefaultPsswords:Administrator"]);
+                await _userManager.CreateAsync(user_Admin, _configuration["DefaultPasswords:Administrator"]);
 
                 //assign the 'RegisteredUser' and 'Administrator' roles
                 await _userManager.AddToRoleAsync(user_Admin, role_RegisteredUser);
@@ -206,7 +206,7 @@ namespace WorldCitiesAPI.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                 };
                 // insert the user into the DB
-                await _userManager.CreateAsync(user_User, _configuration["DefaultPsswords:RegisteredUser"]);
+                await _userManager.CreateAsync(user_User, _configuration["DefaultPasswords:RegisteredUser"]);
 
                 //assign the 'RegisteredUser' role
                 await _userManager.AddToRoleAsync(user_User, role_RegisteredUser);
