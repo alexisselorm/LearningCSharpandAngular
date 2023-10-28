@@ -32,6 +32,23 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     var loginRequest = <LoginRequest>{};
     loginRequest.email = this.form.controls['email'].value!;
     loginRequest.password = this.form.controls['password'].value!;
+
+    this.auth.login(loginRequest).subscribe(
+      (result) => {
+        console.log(result);
+        this.loginResult = result;
+
+        if (result.success && result.token) {
+          localStorage.setItem(this.auth.tokenKey, result.token);
+        }
+      },
+      (error) => {
+        console.log(error);
+        if (error.status == 401) {
+          this.loginResult = error.error;
+        }
+      }
+    );
   }
 
   ngOnInit(): void {}
