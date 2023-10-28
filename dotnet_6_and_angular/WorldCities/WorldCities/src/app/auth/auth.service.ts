@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(item: LoginRequest): Observable<LoginResult> {
-    var url = environment.baseUrl + '/api/Account/Login';
+    var url = environment.baseUrl + 'api/Account/Login';
     return this.http.post<LoginResult>(url, item);
   }
 }

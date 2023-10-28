@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CityEditComponent } from './city-edit/city-edit.component';
 import { CountryEditComponent } from './country-edit/country-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'countries', component: CountriesComponent },
   { path: 'country/:id', component: CountryEditComponent },
   { path: 'country', component: CountryEditComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
