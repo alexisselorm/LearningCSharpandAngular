@@ -5,7 +5,7 @@ namespace WorldCitiesAPI.Data.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base() { }
+
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
 
