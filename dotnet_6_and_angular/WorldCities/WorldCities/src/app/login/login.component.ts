@@ -20,11 +20,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private auth: AuthService
-  ) {
+  constructor(private router: Router, private auth: AuthService) {
     super();
   }
 
