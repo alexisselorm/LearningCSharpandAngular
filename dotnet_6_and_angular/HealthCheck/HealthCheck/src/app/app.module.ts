@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOptionsToken} from "angular-connection-service"
-import {environment} from "../environments/environment";
+import {environment} from "../environments/environment.prod";
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
