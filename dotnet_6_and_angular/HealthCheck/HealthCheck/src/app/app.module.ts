@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ServiceWorkerModule} from '@angular/service-worker';
+import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOptionsToken} from "angular-connection-service"
 import {environment} from "../environments/environment";
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -35,9 +36,17 @@ import { MatToolbarModule } from "@angular/material/toolbar"
       //Register the service worker as soon as the app is stable
       //or after 30 seconds (whichever comes first)
       registrationStrategy:'registerWhenStable:30000'
-    })
+    }),
+    ConnectionServiceModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:ConnectionServiceOptionsToken,
+      useValue:<ConnectionServiceOptions>{
+        heartbeatUrl: environment.baseUrl+'api/heartbeat'
+      }
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
