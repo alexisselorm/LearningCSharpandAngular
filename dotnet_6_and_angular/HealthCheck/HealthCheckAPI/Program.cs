@@ -46,6 +46,8 @@ app.UseCors();
 
 app.UseAuthorization();
 
+app.UseCors("AngularPolicy");
+
 app.UseHealthChecks(new PathString("/api/health"),
     new CustomHealthCheckOptions());
 
