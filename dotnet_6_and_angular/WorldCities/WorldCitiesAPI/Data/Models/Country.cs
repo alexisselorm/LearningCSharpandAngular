@@ -32,6 +32,7 @@ namespace WorldCitiesAPI.Data.Models
         /// Country code (in ISO 3166-1 ALPHA-2 FOrmat)
         /// </summary>
         [JsonPropertyName("iso2")]
+        [GraphQLName("iso2")]
         public string ISO2 { get; set; } = null!;
 
 
@@ -39,10 +40,11 @@ namespace WorldCitiesAPI.Data.Models
         /// Country code (in ISO 3166-1 ALPHA-3 FOrmat)
         /// </summary>
         [JsonPropertyName("iso3")]
+        [GraphQLName("iso3")]
         public string ISO3 { get; set; } = null!;
         #endregion
 
-  
+
         #region Navigation Properties
         ///<summary>
         /// A collection of all the cities related to this country

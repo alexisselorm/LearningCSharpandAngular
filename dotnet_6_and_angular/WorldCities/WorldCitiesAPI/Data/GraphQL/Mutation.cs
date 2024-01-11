@@ -36,8 +36,8 @@ namespace WorldCitiesAPI.Data.GraphQL
             if (city == null)
             {
                 //TODO: handle errors
-                throw new NotSupportedException()
-            }
+                throw new NotSupportedException();
+            };
             city.Name = cityDTO.Name;
             city.Lat = cityDTO.Lat;
             city.Lon = cityDTO.Lon;
