@@ -16,8 +16,17 @@ import { CountryEditComponent } from './country-edit/country-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import {environment} from "../environments/environment";
-import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOptionsToken} from "angular-connection-service";
+import { environment } from '../environments/environment';
+import {
+  ConnectionServiceModule,
+  ConnectionServiceOptions,
+  ConnectionServiceOptionsToken,
+} from 'angular-connection-service';
+
+//APOLLO - GRAPHQL
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { InMemoryCache } from '@apollo/client/core';
 
 @NgModule({
   declarations: [
@@ -41,9 +50,9 @@ import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOption
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
-    ConnectionServiceModule
+    ConnectionServiceModule,
   ],
   providers: [
     {
@@ -54,9 +63,27 @@ import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOption
     {
       provide: ConnectionServiceOptionsToken,
       useValue: <ConnectionServiceOptions>{
-        heartbeatUrl:environment.baseUrl+'api/heartbeat'
-      }
-    }
+        heartbeatUrl: environment.baseUrl + 'api/heartbeat',
+      },
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache({
+            addTypename: false,
+          }),
+          link: httpLink.create({
+            uri: environment.baseUrl + '/api/graphql/',
+          }),
+          defaultOptions: {
+            watchQuery: { fetchPolicy: 'no-cache' },
+            query: { fetchPolicy: 'no-cache' },
+          },
+        };
+      },
+      deps: [HttpLink],
+    },
   ],
   bootstrap: [AppComponent],
 })
