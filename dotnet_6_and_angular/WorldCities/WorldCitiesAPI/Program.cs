@@ -7,6 +7,7 @@ using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
 using System.Text;
 using WorldCitiesAPI.Data;
+using WorldCitiesAPI.Data.GraphQL;
 using WorldCitiesAPI.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,6 +71,14 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<JwtHandler>();
 
+builder.Services.AddGraphQLServer()
+    .AddAuthorization()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
+    .AddFiltering()
+    .AddSorting();
+
+
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
@@ -87,5 +96,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGraphQL("/api/graphql");
 
 app.Run();

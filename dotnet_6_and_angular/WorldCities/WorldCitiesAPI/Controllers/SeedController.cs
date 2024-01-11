@@ -37,7 +37,7 @@ namespace WorldCitiesAPI.Controllers
                 throw new SecurityException("Not allowed");
             }
 
-            var path = Path.Combine(_env.ContentRootPath, "Data/Sources/worldcities.xlsx");
+            var path = System.IO.Path.Combine(_env.ContentRootPath, "Data/Sources/worldcities.xlsx");
 
             using var stream = System.IO.File.OpenRead(path);
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
