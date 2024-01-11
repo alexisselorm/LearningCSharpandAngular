@@ -74,7 +74,7 @@ import { InMemoryCache } from '@apollo/client/core';
             addTypename: false,
           }),
           link: httpLink.create({
-            uri: environment.baseUrl + '/api/graphql/',
+            uri: environment.baseUrl + 'api/graphql/',
           }),
           defaultOptions: {
             watchQuery: { fetchPolicy: 'no-cache' },

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { City } from './city';
 import { ApiResult, BaseService } from '../base.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { Apollo, gql } from 'apollo-angular';
 import { Country } from '../countries/country';
 @Injectable({ providedIn: 'root' })
 export class CityService extends BaseService<City> {
-  constructor(private httpClient: HttpClient) {
-    super(httpClient);
+  constructor(protected override http: HttpClient, private apollo: Apollo) {
+    super(http);
   }
   url = this.getUrl('api/Cities/');
 
@@ -33,9 +34,35 @@ export class CityService extends BaseService<City> {
     return this.http.get<ApiResult<City>>(this.url, { params });
   }
 
+  // get(id: number): Observable<City> {
+
+  //   return this.http.get<City>(this.url + id);
+  // }
+
+  //APOLLO IMPLEMENTATION
   get(id: number): Observable<City> {
-    return this.http.get<City>(this.url + id);
+    return this.apollo
+      .query({
+        query: gql`
+          query GetCityById($id: Int!) {
+            cities(where: { id: { eq: $id } }) {
+              nodes {
+                id
+                name
+                lat
+                lon
+                countryId
+              }
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      })
+      .pipe(map((result: any) => result.data.cities.nodes[0]));
   }
+
   put(item: City): Observable<City> {
     return this.http.put<City>(this.url + item.id, item);
   }
