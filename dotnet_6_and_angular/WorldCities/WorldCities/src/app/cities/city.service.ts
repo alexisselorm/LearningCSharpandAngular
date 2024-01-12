@@ -12,6 +12,43 @@ export class CityService extends BaseService<City> {
   }
   url = this.getUrl('api/Cities/');
 
+  // getData(
+  //   pageIndex: number,
+  //   pageSize: number,
+  //   sortColumn: string,
+  //   sortOrder: string,
+  //   filterColumn: string | null,
+  //   filterQuery: string | null
+  // ): Observable<ApiResult<City>> {
+  //   var params = new HttpParams()
+  //     .set('pageIndex', pageIndex)
+  //     .set('pageSize', pageSize)
+  //     .set('sortColumn', sortColumn)
+  //     .set('sortOrder', sortOrder);
+
+  //   if (filterColumn && filterQuery) {
+  //     params = params
+  //       .set('filterColumn', filterColumn)
+  //       .set('filterQuery', filterQuery);
+  //   }
+  //   return this.http.get<ApiResult<City>>(this.url, { params });
+  // }
+
+  // get(id: number): Observable<City> {
+
+  //   return this.http.get<City>(this.url + id);
+  // }
+
+  // put(item: City): Observable<City> {
+  //   return this.http.put<City>(this.url + item.id, item);
+  // }
+
+  // post(item: City): Observable<City> {
+  //   return this.http.post<City>(this.url, item);
+  // }
+
+  //APOLLO IMPLEMENTATION
+
   getData(
     pageIndex: number,
     pageSize: number,
@@ -20,26 +57,56 @@ export class CityService extends BaseService<City> {
     filterColumn: string | null,
     filterQuery: string | null
   ): Observable<ApiResult<City>> {
-    var params = new HttpParams()
-      .set('pageIndex', pageIndex)
-      .set('pageSize', pageSize)
-      .set('sortColumn', sortColumn)
-      .set('sortOrder', sortOrder);
-
-    if (filterColumn && filterQuery) {
-      params = params
-        .set('filterColumn', filterColumn)
-        .set('filterQuery', filterQuery);
-    }
-    return this.http.get<ApiResult<City>>(this.url, { params });
+    return this.apollo
+      .query({
+        query: gql`
+          query GetCitiesApiResult(
+            $pageIndex: Int!
+            $pageSize: Int!
+            $sortColumn: String
+            $sortOrder: String
+            $filterColumn: String
+            $filterQuery: String
+          ) {
+            citiesApiResult(
+              pageIndex: $pageIndex
+              pageSize: $pageSize
+              sortColumn: $sortColumn
+              sortOrder: $sortOrder
+              filterColumn: $filterColumn
+              filterQuery: $filterQuery
+            ) {
+              data {
+                id
+                name
+                lat
+                lon
+                countryId
+                countryName
+              }
+              pageIndex
+              pageSize
+              totalCount
+              totalPages
+              sortColumn
+              sortOrder
+              filterColumn
+              filterQuery
+            }
+          }
+        `,
+        variables: {
+          pageIndex,
+          pageSize,
+          sortColumn,
+          sortOrder,
+          filterColumn,
+          filterQuery,
+        },
+      })
+      .pipe(map((result: any) => result.data.citiesApiResult));
   }
 
-  // get(id: number): Observable<City> {
-
-  //   return this.http.get<City>(this.url + id);
-  // }
-
-  //APOLLO IMPLEMENTATION
   get(id: number): Observable<City> {
     return this.apollo
       .query({
@@ -64,10 +131,46 @@ export class CityService extends BaseService<City> {
   }
 
   put(item: City): Observable<City> {
-    return this.http.put<City>(this.url + item.id, item);
+    console.log(item);
+    return this.apollo
+      .mutate({
+        mutation: gql`
+          mutation UpdateCity($city: CityDTOInput!) {
+            updateCity(cityDTO: $city) {
+              id
+              name
+              lat
+              lon
+              countryId
+            }
+          }
+        `,
+        variables: {
+          city: item,
+        },
+      })
+      .pipe(map((result: any) => result.data.updateCity));
   }
   post(item: City): Observable<City> {
-    return this.http.post<City>(this.url, item);
+    console.log(item);
+    return this.apollo
+      .mutate({
+        mutation: gql`
+          mutation AddCity($city: CityDTOInput!) {
+            addCity(cityDTO: $city) {
+              id
+              name
+              lat
+              lon
+              countryId
+            }
+          }
+        `,
+        variables: {
+          city: item,
+        },
+      })
+      .pipe(map((result: any) => result.data.addCity));
   }
 
   getCountries(
