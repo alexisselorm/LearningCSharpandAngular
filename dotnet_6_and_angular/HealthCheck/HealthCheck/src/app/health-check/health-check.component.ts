@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
+import { HealthCheckService, Result } from './health-check.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-health-check',
@@ -8,28 +10,14 @@ import { environment } from '../../environments/environment.prod';
   styleUrls: ['./health-check.component.css'],
 })
 export class HealthCheckComponent implements OnInit {
-  public result?: Result;
+  public result: Observable<Result | null>;
 
-  constructor(private http: HttpClient) {}
+  constructor(public service: HealthCheckService) {
+    this.result = this.service.result;
+  }
 
   ngOnInit() {
-    this.http.get<Result>(environment.baseUrl + 'api/health').subscribe(
-      (result) => {
-        this.result = result;
-      },
-      (error) => console.log(error)
-    );
+    this.service.startConnection();
+    this.service.addDataListeners();
   }
-}
-
-interface Result {
-  checks: Check[];
-  totalStatus: string;
-  totalResponse: number;
-}
-interface Check {
-  name: string;
-  responseTime: number;
-  status: string;
-  description: string;
 }

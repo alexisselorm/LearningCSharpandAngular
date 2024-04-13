@@ -29,6 +29,13 @@ export class HealthCheckService {
     this.updateData();
   }
 
+  public addDataListeners() {
+    this.hubConnection.on('Update', (msg) => {
+      console.log('Update issued by server for the following reason: ' + msg);
+      this.updateData();
+    });
+  }
+
   public updateData() {
     console.log('Fetching data...');
     this.http
@@ -45,7 +52,6 @@ export interface Result {
   totalStatus: string;
   totalResponseTime: number;
 }
-
 interface Check {
   name: string;
   responseTime: number;
