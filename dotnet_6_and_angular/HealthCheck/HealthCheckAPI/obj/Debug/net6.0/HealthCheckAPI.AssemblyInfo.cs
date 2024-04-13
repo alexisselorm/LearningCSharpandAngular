@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthCheckAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0dc082b4f041f0bec363e709380972538ecacfb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthCheckAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthCheckAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
