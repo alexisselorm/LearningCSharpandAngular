@@ -34,6 +34,10 @@ export class HealthCheckService {
       console.log('Update issued by server for the following reason: ' + msg);
       this.updateData();
     });
+    this.hubConnection.on('ClientUpdate', (msg) => {
+      console.log('Update issued by server for the following reason: ' + msg);
+      this.updateData();
+    });
   }
 
   public updateData() {
@@ -44,6 +48,12 @@ export class HealthCheckService {
         this._result.next(res);
         console.log(res);
       });
+  }
+
+  public sendClientUpdate() {
+    this.hubConnection
+      .invoke('ClientUpdate', 'client test')
+      .catch((err) => console.log(err));
   }
 }
 

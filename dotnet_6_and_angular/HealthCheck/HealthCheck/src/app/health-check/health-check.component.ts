@@ -16,6 +16,10 @@ export class HealthCheckComponent implements OnInit {
     this.result = this.service.result;
   }
 
+  onRefresh() {
+    this.service.sendClientUpdate();
+  }
+
   ngOnInit() {
     this.service.startConnection();
     this.service.addDataListeners();
