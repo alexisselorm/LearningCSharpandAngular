@@ -30,3 +30,4 @@ C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\HealthCh
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\HealthCheck\HealthCheckAPI\obj\Debug\net6.0\HealthCheckAPI.pdb
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\HealthCheck\HealthCheckAPI\obj\Debug\net6.0\HealthCheckAPI.genruntimeconfig.cache
 C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\HealthCheck\HealthCheckAPI\obj\Debug\net6.0\ref\HealthCheckAPI.dll
+C:\Users\AGKove\Documents\LearningCSharpandAngular\dotnet_6_and_angular\HealthCheck\HealthCheckAPI\obj\Debug\net6.0\HealthCheckAPI.sourcelink.json
