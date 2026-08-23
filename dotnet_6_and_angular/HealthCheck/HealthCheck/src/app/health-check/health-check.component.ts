@@ -5,6 +5,7 @@ import { HealthCheckService, Result } from './health-check.service';
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-health-check',
   templateUrl: './health-check.component.html',
   styleUrls: ['./health-check.component.css'],

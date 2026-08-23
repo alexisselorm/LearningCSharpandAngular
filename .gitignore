@@ -1,5 +1,69 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿## .NET / C#
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nupkg
+*.snupkg
+project.nuget.cache
+project.assets.json
+*.csproj.nuget.*
+launchSettings.json
 
-/dotnet_6_and_angular/WorldCities/.vs/WorldCities/FileContentIndex
+## Visual Studio
+.vs/
+*.swp
+*.[0-9]~
+\#*\#
+.idea/
+*.sln.iml
+
+## Rider
+.idea/
+
+## VS Code
+.vscode/
+
+## Node.js / Angular
+node_modules/
+dist/
+.angular/
+ngsw-config.json.bak
+*.jsbundle
+
+## npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+## OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+## Logs
+logs/
+*.log
+
+## Environment / secrets
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.local
+.env.*.local
+
+## Test results
+coverage/
+TestResults/
+
+## Build artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+!.gitignore

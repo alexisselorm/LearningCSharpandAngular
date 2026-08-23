@@ -4,6 +4,7 @@ import { ReqresService } from 'src/app/services/reqres.service';
 import { User } from 'src/app/user';
 
 @Component({
+  standalone: false,
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],

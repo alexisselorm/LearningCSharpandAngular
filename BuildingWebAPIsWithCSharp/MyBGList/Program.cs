@@ -49,14 +49,15 @@ builder.Host.UseSerilog((ctx, lc) =>
             TableName = "LogEvents",
             AutoCreateSqlTable = true,
         },
-        columnOptions: new ColumnOptions()
+        columnOptions: new ColumnOptions
         {
-            AdditionalColumns = new SqlColumn[] {
-                new SqlColumn()
+            AdditionalColumns = new SqlColumn[]
+            {
+                new SqlColumn
                 {
-                    ColumnName="SourceContext",
-                    PropertyName="SourceContext",
-                    DataType= System.Data.SqlDbType.NVarChar
+                    ColumnName = "SourceContext",
+                    PropertyName = "SourceContext",
+                    DataType = System.Data.SqlDbType.NVarChar
                 }
             }
         });

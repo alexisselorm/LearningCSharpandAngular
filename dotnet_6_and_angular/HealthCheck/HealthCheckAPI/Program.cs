@@ -12,6 +12,12 @@ builder.Services.AddCors(options =>
         cfg.AllowAnyHeader();
         cfg.AllowAnyMethod();
     });
+    options.AddPolicy(name: "AngularPolicy", cfg =>
+    {
+        cfg.AllowAnyHeader();
+        cfg.AllowAnyMethod();
+        cfg.WithOrigins(builder.Configuration["AllowedCORS"]);
+    });
 });
 builder.Services.AddHealthChecks()
     .AddCheck("ICMP_01", new ICMPHealthCheck("www.ryadel.com", 200))
@@ -21,16 +27,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: "AngularPolicy", cfg =>
-    {
-        cfg.AllowAnyHeader();
-        cfg.AllowAnyMethod();
-        cfg.WithOrigins(builder.Configuration["AllowedCORS"]);
-    });
-});
 
 builder.Services.AddSignalR();
 

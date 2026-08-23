@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 
 @Component({
+  standalone: false,
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html',
   styleUrls: ['./fetch-data.component.css'],

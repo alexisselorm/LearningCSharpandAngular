@@ -7,6 +7,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
+  standalone: false,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],

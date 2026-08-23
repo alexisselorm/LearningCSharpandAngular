@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -12,14 +11,11 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true, //This was need to make apollo work ( I installed with --legacy-per-deps)
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {

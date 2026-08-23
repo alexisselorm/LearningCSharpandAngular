@@ -4,6 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css'],

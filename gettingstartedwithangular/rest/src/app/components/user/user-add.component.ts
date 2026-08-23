@@ -5,6 +5,7 @@ import { ReqresService } from '../../services/reqres.service';
 import { User } from '../../user';
 
 @Component({
+  standalone: false,
   selector: 'app-user-add',
   templateUrl: './user-add.component.html',
   styleUrls: ['./user-add.component.css'],

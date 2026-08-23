@@ -3,6 +3,7 @@ import { AuthService } from './auth/auth.service';
 import {ConnectionService} from "angular-connection-service"
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

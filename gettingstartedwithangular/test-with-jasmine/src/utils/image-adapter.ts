@@ -1,22 +1,17 @@
-import { Editor } from '@ckeditor/ckeditor5-core';
-import ImageUploadAdapter from '@ckeditor/ckeditor5-image/src/imageupload';
+export class CustomImageUploadAdapter {
+  private loader: any;
 
-export class CustomImageUploadAdapter extends ImageUploadAdapter {
-  constructor(loader: Editor) {
-    super(loader);
+  constructor(loader: any) {
+    this.loader = loader;
   }
 
   upload() {
-    // Implement your image upload logic here.
     console.log('object');
-    // This could involve sending the file to a server and returning the image URL.
-    const imageUrl = 'url_to_uploaded_image'; // Replace with the actual URL
-    return new Promise((resolve, reject) => {
+    const imageUrl = 'url_to_uploaded_image';
+    return new Promise<{ default: string }>((resolve) => {
       resolve({ default: imageUrl });
     });
   }
-}
 
-interface ImageUploadAdapterLoader {
-  upload(file: File): Promise<{ default: string }>;
+  abort() {}
 }

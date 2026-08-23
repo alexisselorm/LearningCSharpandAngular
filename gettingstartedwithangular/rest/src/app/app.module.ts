@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
@@ -31,14 +31,15 @@ import { NoimagePipe } from './pipes/noimage.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
-    ReactiveFormsModule,
-    FormsModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

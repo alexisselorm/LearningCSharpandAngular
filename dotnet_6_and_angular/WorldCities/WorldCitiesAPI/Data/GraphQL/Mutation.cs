@@ -1,4 +1,5 @@
 ﻿using HotChocolate.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using WorldCitiesAPI.Data.Models;
 
@@ -10,7 +11,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         ///Add a new city
         /// </summary>
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<City> AddCity([Service] ApplicationDbContext context, CityDTO cityDTO)
         {
             var city = new City()
@@ -29,7 +30,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         ///Update an existing city
         /// </summary>
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<City> UpdateCity([Service] ApplicationDbContext context, CityDTO cityDTO)
         {
             var city = await context.Cities.Where(c => c.Id == cityDTO.Id).FirstOrDefaultAsync();
@@ -51,7 +52,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         ///Delete a city
         /// </summary>
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task DeleteCity([Service] ApplicationDbContext context, int id)
         {
             var city = await context.Cities.Where(c => c.Id == id).FirstOrDefaultAsync();
@@ -67,7 +68,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         ///Add a new Country
         /// </summary>
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<Country> AddCountry([Service] ApplicationDbContext context, CountryDTO countryDTO)
         {
             var country = new Country()
@@ -85,7 +86,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         ///Update an existing country
         /// </summary>
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<Country> UpdateCountry([Service] ApplicationDbContext context, CountryDTO countryDTO)
         {
             var country = await context.Countries.Where(c => c.Id == countryDTO.Id).FirstOrDefaultAsync();
@@ -103,7 +104,7 @@ namespace WorldCitiesAPI.Data.GraphQL
         }
 
         [Serial]
-        [Authorize(Roles = new[] { "RegisteredUser" })]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task DeleteCountry([Service] ApplicationDbContext context, int id)
         {
             var country = await context.Countries.Where(c => c.Id == id).FirstOrDefaultAsync();

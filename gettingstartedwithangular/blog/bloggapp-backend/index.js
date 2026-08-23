@@ -1,14 +1,13 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const url = "mongodb://localhost/blog";
 const User = require("./models/user");
 const Post = require("./models/post");
 
 mongoose.set("strictQuery", true);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 mongoose.connect(url);
 
 // app.post("/api/user/login", async (req, res) => {
@@ -88,7 +87,7 @@ app.put('/api/post/updatePost',async(req,res)=>{
 })
 
 app.post('/api/post/deletePost',async(req,res)=>{
-  let deletedPost = await Post.findByIdAndRemove({_id: req.body.id})
+  let deletedPost = await Post.findByIdAndDelete({_id: req.body.id})
   console.log(deletedPost);
   return res.status(200).json({
       status: "success",

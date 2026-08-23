@@ -17,6 +17,7 @@ import { BaseFormComponent } from '../base-form.component';
 import { CityService } from '../cities/city.service';
 
 @Component({
+  standalone: false,
   selector: 'app-city-edit',
   templateUrl: './city-edit.component.html',
   styleUrls: ['./city-edit.component.scss'],

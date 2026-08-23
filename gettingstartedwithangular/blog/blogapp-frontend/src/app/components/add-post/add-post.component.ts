@@ -6,6 +6,7 @@ import { AddPostService } from 'src/app/services/add-post.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
+  standalone: false,
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css'],

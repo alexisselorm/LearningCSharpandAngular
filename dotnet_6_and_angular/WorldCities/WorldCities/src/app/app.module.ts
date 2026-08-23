@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CitiesComponent } from './cities/cities.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { CountriesComponent } from './countries/countries.component';
@@ -15,7 +15,7 @@ import { CityEditComponent } from './city-edit/city-edit.component';
 import { CountryEditComponent } from './country-edit/country-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { provideServiceWorker } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {
   ConnectionServiceModule,
@@ -41,25 +41,18 @@ import { InMemoryCache } from '@apollo/client/core';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
     ConnectionServiceModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    provideHttpClient(withInterceptors([AuthInterceptor])),
+    provideAnimationsAsync(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
     {
       provide: ConnectionServiceOptionsToken,
       useValue: <ConnectionServiceOptions>{

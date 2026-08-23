@@ -8,6 +8,7 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { CityService } from './city.service';
 
 @Component({
+  standalone: false,
   selector: 'app-cities',
   templateUrl: './cities.component.html',
   styleUrls: ['./cities.component.scss'],

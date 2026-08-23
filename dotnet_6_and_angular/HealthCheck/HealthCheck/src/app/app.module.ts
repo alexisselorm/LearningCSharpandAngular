@@ -1,7 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {ServiceWorkerModule} from '@angular/service-worker';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideServiceWorker } from '@angular/service-worker';
 import {ConnectionServiceModule,ConnectionServiceOptions,ConnectionServiceOptionsToken} from "angular-connection-service"
 import {environment} from "../environments/environment.prod";
 import { AppComponent } from './app.component';
@@ -10,7 +11,6 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HealthCheckComponent } from './health-check/health-check.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar"
@@ -25,21 +25,19 @@ import { MatToolbarModule } from "@angular/material/toolbar"
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    ServiceWorkerModule.register('ngsw-worker.js',{
-      enabled:environment.production,
-      //Register the service worker as soon as the app is stable
-      //or after 30 seconds (whichever comes first)
-      registrationStrategy:'registerWhenStable:30000'
-    }),
     ConnectionServiceModule
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAnimationsAsync(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     {
       provide:ConnectionServiceOptionsToken,
       useValue:<ConnectionServiceOptions>{
